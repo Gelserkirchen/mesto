@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mesto</title>
+    <title>Место</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body class="root">
@@ -16,15 +16,15 @@
 
         <main class="content">
             <section class="profile">
-                <img class="avatar" src="./images/profile_photo.jpeg" alt="Аватар пользователя" >
+                <img class="profile__avatar" src="./images/profile_photo.jpeg" alt="Аватар пользователя" >
                 <div class="profile__info">
-                    <div class="profile__name_section">
+                    <div class="profile__name-section">
                         <p class="profile__name">Жак Ив Кусто</p>
-                        <button class="profile__edit-button"><i class="edit-button__icon"></i></button>
+                        <button class="profile__edit-button"><i class="profile__edit-icon"></i></button>
                     </div>
                     <p class="profile__profession">Исследователь океана</p>
                 </div>
-                <button class="add-button"><i class="add-button__icon"></i></button>
+                <button class="profile__add-button"><i class="profile__add-icon"></i></button>
             </section>
 
             <section class="cards">
@@ -84,14 +84,13 @@
 
         <div class="popup">
             <div class="popup__container">
-                <button class="popup__close">
-                    <img class="popup__close-icon" src="./images/__close-popup.svg" alt="закрыть Всплывающее окно">
+                <button class="popup__close-button">
+                    <img class="popup__close-button-icon" src="./images/__close-popup.svg" alt="закрыть Всплывающее окно">
                 </button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-<!--                <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="10">-->
                 <input class="popup__input popup__input_name" type="text" id="name" placeholder="Имя">
                 <input class="popup__input popup__input_profile" type="text" id="profile" placeholder="Профессия">
-                <button class="popup-button">Сохранить</button>
+                <button class="popup__save-button">Сохранить</button>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 const profileEditPopupButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.popup');
-const profilePopupCloseButton = document.querySelector('.popup__close');
+const profilePopupCloseButton = document.querySelector('.popup__close-button');
 
 
 let formElement = document.querySelector('.popup__container'); // Попап
@@ -10,7 +10,7 @@ let jobInput = document.querySelector('.profile__profession'); // Фио с са
 let namePopup = document.querySelector('.popup__input_name'); // Имя с попапа
 let jobPopup = document.querySelector('.popup__input_profile'); // Работа с попапа
 
-const submitPopupButton = document.querySelector('.popup-button');
+const submitPopupButton = document.querySelector('.popup__save-button');
 
 function openPopup(event) {
   event.preventDefault();

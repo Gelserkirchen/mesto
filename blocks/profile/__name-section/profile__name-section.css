@@ -1,0 +1,6 @@
+.profile__name-section {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin: 0 0 16px 0;
+}
