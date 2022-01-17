@@ -9,91 +9,100 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body class="root">
-    <div class="page">
-        <header class="header">
-            <img class="header__logo" src="./images/header-logo.svg" alt="Логотип проекта Место">
-        </header>
+<div class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/header-logo.svg" alt="Логотип проекта Место">
+    </header>
 
-        <main class="content">
-            <section class="profile">
-                <img class="profile__avatar" src="./images/profile_photo.jpeg" alt="Аватар пользователя" >
-                <div class="profile__info">
-                    <div class="profile__name-section">
-                        <p class="profile__name">Жак Ив Кусто</p>
-                        <button class="profile__edit-button"><i class="profile__edit-icon"></i></button>
-                    </div>
-                    <p class="profile__profession">Исследователь океана</p>
+    <main class="content">
+        <section class="profile">
+            <img class="profile__avatar" src="./images/profile_photo.jpeg" alt="Аватар пользователя">
+            <div class="profile__info">
+                <div class="profile__name-section">
+                    <p class="profile__name">Жак Ив Кусто</p>
+                    <button class="profile__edit-button"><img src="./images/__edit_button.svg"
+                                                              class="profile__edit-icon"
+                                                              alt="Кнопка редактировать профиль"></button>
                 </div>
-                <button class="profile__add-button"><i class="profile__add-icon"></i></button>
-            </section>
-
-            <section class="cards">
-                <div class="card">
-                    <img src="./images/karachaevsk.jpeg" alt="Картинка Карачаевска" class="card__image">
-                    <div class="card__description">
-                        <h2 class="card__text">Карачаевск</h2>
-                        <button class="like-button"><i class="like-button__icon"></i></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./images/elbrus.jpeg" alt="Картинка Гора Эльбрус" class="card__image">
-                    <div class="card__description">
-                        <h2 class="card__text">Гора Эльбрус</h2>
-                        <button class="like-button"><i class="like-button__icon"></i></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./images/dombai.jpeg" alt="Картинка Домбай" class="card__image">
-                    <div class="card__description">
-                        <h2 class="card__text">Домбай</h2>
-                        <button class="like-button"><i class="like-button__icon"></i></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./images/elbrus.jpeg" alt="Картинка Гора Эльбрус" class="card__image">
-                    <div class="card__description">
-                        <h2 class="card__text">Гора Эльбрус</h2>
-                        <button class="like-button"><i class="like-button__icon"></i></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./images/dombai.jpeg" alt="Картинка Домбай" class="card__image">
-                    <div class="card__description">
-                        <h2 class="card__text">Домбай</h2>
-                        <button class="like-button"><i class="like-button__icon"></i></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./images/karachaevsk.jpeg" alt="Картинка Карачаевска" class="card__image">
-                    <div class="card__description">
-                        <h2 class="card__text">Карачаево-Черкессия</h2>
-                        <button class="like-button"><i class="like-button__icon"></i></button>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-        </footer>
-
-        <div class="popup">
-            <div class="popup__container">
-                <button class="popup__close-button">
-                    <img class="popup__close-button-icon" src="./images/__close-popup.svg" alt="закрыть Всплывающее окно">
-                </button>
-                <h3 class="popup__title">Редактировать профиль</h3>
-                <input class="popup__input popup__input_name" type="text" id="name" placeholder="Имя">
-                <input class="popup__input popup__input_profile" type="text" id="profile" placeholder="Профессия">
-                <button class="popup__save-button">Сохранить</button>
+                <p class="profile__profession">Исследователь океана</p>
             </div>
+            <button class="profile__add-button"><img src="./images/__add.svg" class="profile__add-icon"
+                                                     alt="Кнопка добавить карточку"></button>
+        </section>
+
+        <section class="cards">
+            <div class="card">
+                <img src="./images/karachaevsk.jpeg" alt="Картинка Карачаевска" class="card__image">
+                <div class="card__description">
+                    <h2 class="card__text">Карачаевск</h2>
+                    <button class="like-button"><img src="./images/__like.svg" class="profile__add-icon"
+                                                     alt="Кнопка добавить в избранное"></button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./images/elbrus.jpeg" alt="Картинка Гора Эльбрус" class="card__image">
+                <div class="card__description">
+                    <h2 class="card__text">Гора Эльбрус</h2>
+                    <button class="like-button"><img src="./images/__like.svg" class="profile__add-icon"
+                                                     alt="Кнопка добавить в избранное"></button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./images/dombai.jpeg" alt="Картинка Домбай" class="card__image">
+                <div class="card__description">
+                    <h2 class="card__text">Домбай</h2>
+                    <button class="like-button"><img src="./images/__like.svg" class="profile__add-icon"
+                                                     alt="Кнопка добавить в избранное"></button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./images/elbrus.jpeg" alt="Картинка Гора Эльбрус" class="card__image">
+                <div class="card__description">
+                    <h2 class="card__text">Гора Эльбрус</h2>
+                    <button class="like-button"><img src="./images/__like.svg" class="profile__add-icon"
+                                                     alt="Кнопка добавить в избранное"></button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./images/dombai.jpeg" alt="Картинка Домбай" class="card__image">
+                <div class="card__description">
+                    <h2 class="card__text">Домбай</h2>
+                    <button class="like-button"><img src="./images/__like.svg" class="profile__add-icon"
+                                                     alt="Кнопка добавить в избранное"></button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="./images/karachaevsk.jpeg" alt="Картинка Карачаевска" class="card__image">
+                <div class="card__description">
+                    <h2 class="card__text">Карачаево-Черкессия</h2>
+                    <button class="like-button"><img src="./images/__like.svg" class="profile__add-icon"
+                                                     alt="Кнопка добавить в избранное"></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+
+    <div class="popup">
+        <div class="popup__container">
+            <button class="popup__close-button">
+                <img class="popup__close-button-icon" src="./images/__close-popup.svg" alt="закрыть Всплывающее окно">
+            </button>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <input class="popup__input popup__input_name" type="text" id="name" placeholder="Имя">
+            <input class="popup__input popup__input_profile" type="text" id="profile" placeholder="Профессия">
+            <button class="popup__save-button">Сохранить</button>
         </div>
     </div>
-    <script src="index.js"></script>
+</div>
+<script src="index.js"></script>
 </body>
 </html>
