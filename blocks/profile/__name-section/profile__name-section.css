@@ -4,3 +4,9 @@
     align-items: baseline;
     margin: 0 0 16px 0;
 }
+
+@media screen and (max-width: 900px) {
+    .profile__name-section {
+        margin: 0 0 14px 0;
+    }
+}

@@ -1,0 +1,9 @@
+.like-button__icon_active {
+    width: 22px;
+    height: 19px;
+    background: url("../../../../images/__like_active.svg");
+}
+
+.like-button__icon_active:hover {
+    opacity: 50%;
+}

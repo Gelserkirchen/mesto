@@ -3,3 +3,11 @@
     height: 24px;
     background: url("../../../images/__edit_button.svg");
 }
+
+@media screen and (max-width: 900px) {
+    .profile__edit-icon {
+        width: 18px;
+        height: 18px;
+        background-size: cover;
+    }
+}
