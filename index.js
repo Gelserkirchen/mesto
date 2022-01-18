@@ -3,29 +3,50 @@ const profilePopup = document.querySelector('.popup');
 const profilePopupCloseButton = document.querySelector('.popup__close-button');
 const submitPopupButton = document.querySelector('.popup__save-button');
 
-let nameInput = document.querySelector('.profile__name');
-let jobInput = document.querySelector('.profile__profession');
-let namePopup = document.querySelector('.popup__input_name');
-let jobPopup = document.querySelector('.popup__input_profile');
+let profileName = document.querySelector('.profile__name');
+let profileJob = document.querySelector('.profile__profession');
+let namePopupInput = document.querySelector('.popup__input_name');
+let jobPopupInput = document.querySelector('.popup__input_profile');
 
+// Open popup
 function openPopup(event) {
   event.preventDefault();
-  namePopup.value = nameInput.textContent;
-  jobPopup.value = jobInput.textContent;
+  namePopupInput.value = profileName.textContent;
+  jobPopupInput.value = profileJob.textContent;
   profilePopup.classList.add('popup_opened');
 }
 
+// Close popup without saving
 function closePopup() {
   profilePopup.classList.remove('popup_opened');
 }
 
+// Save result of popup to profile
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  nameInput.textContent = namePopup.value;
-  jobInput.textContent = jobPopup.value;
+  profileName.textContent = namePopupInput.value;
+  profileJob.textContent = jobPopupInput.value;
   closePopup();
 }
 
+// Enter for save Name of user
+namePopupInput.addEventListener('keyup', function (evt) {
+  if (evt.key === 'Enter' || evt.keyCode === 13) {
+    evt.preventDefault();
+    formSubmitHandler(evt);
+  }
+});
+
+// Enter for save job title
+jobPopupInput.addEventListener('keyup', function (evt) {
+  if (evt.key === 'Enter' || evt.keyCode === 13) {
+    evt.preventDefault();
+    formSubmitHandler(evt);
+  }
+});
+
+
+// add Event Listeners to objects
 submitPopupButton.addEventListener('click', formSubmitHandler);
 profileEditPopupButton.addEventListener('click', openPopup);
 profilePopupCloseButton.addEventListener('click', closePopup);
