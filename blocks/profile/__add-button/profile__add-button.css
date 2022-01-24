@@ -10,6 +10,10 @@
     color: white;
     padding: 0;
     cursor: pointer;
+    background-image: url("../../../images/__add.svg");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
 }
 
 .profile__add-button:hover {

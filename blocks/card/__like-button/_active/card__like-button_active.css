@@ -1,9 +1,9 @@
-.like-button__icon_active {
+.card__like-button_active {
     width: 22px;
     height: 19px;
     background: url("../../../../images/__like_active.svg");
 }
 
-.like-button__icon_active:hover {
+.card__like-button_active:hover {
     opacity: 50%;
 }
