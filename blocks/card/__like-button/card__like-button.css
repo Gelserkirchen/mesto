@@ -9,8 +9,8 @@
     cursor: pointer;
     background-image: url("../../../images/__like.svg");
     background-size: cover;
-    width: 22px;
-    height: 19px;
+    min-width: 22px;
+    min-height: 19px;
 }
 
 .card__like-button:hover {

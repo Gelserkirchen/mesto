@@ -1,6 +1,6 @@
 const profileEditPopupButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.popup');
-const profilePopupContainer = document.querySelector('.popup__container');
+const profilePopupFormInputs = document.querySelector('.popup__inputs');
 const profilePopupCloseButton = document.querySelector('.popup__close-button');
 
 let profileName = document.querySelector('.profile__name');
@@ -29,7 +29,7 @@ function formSubmitHandler(evt) {
 }
 
 // add Event Listeners to objects
-profilePopupContainer.addEventListener('submit', formSubmitHandler);
+profilePopupFormInputs.addEventListener('submit', formSubmitHandler);
 profileEditPopupButton.addEventListener('click', openPopup);
 profilePopupCloseButton.addEventListener('click', closePopup);
 // profilePopup.addEventListener('click', function (event) {
