@@ -52,21 +52,24 @@
     <template class="card__template">
         <div class="card">
             <button class="card__delete-button" type="button"></button>
-            <img src="#" class="card__image">
+            <img src="#" class="card__image" alt="Картинка места">
             <div class="card__description">
                 <h2 class="card__text"></h2>
                 <button class="card__like-button" type="button"></button>
             </div>
         </div>
     </template>
-    
-    <div class="image-popup">
-        <div class="image-popup__container">
-            <button class="image__close-button" type="button"></button>
-            <img class="image-popup__picture" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="" >
-            <p class="image-popup__description">Камчатка</p>
+
+
+    <template class="image-popup__template">
+        <div class="image-popup">
+            <div class="image-popup__container">
+                <button class="image__close-button" type="button"></button>
+                <img class="image-popup__picture" src="" alt="Картинка природы России" >
+                <p class="image-popup__description"></p>
+            </div>
         </div>
-    </div>
+    </template>
     
 </div>
 <script src="scripts/index.js"></script>

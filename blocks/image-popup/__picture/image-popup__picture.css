@@ -1,12 +1,11 @@
 .image-popup__picture {
-    min-height: 540px;
+    height: 540px;
     margin: 0 0 10px;
-
 }
 
 @media screen and (max-width: 920px) {
     .image-popup__picture {
         width: 240px;
-        min-height: 299px;
+        height: 299px;
     }
 }
