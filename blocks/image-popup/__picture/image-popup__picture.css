@@ -1,11 +1,5 @@
 .image-popup__picture {
-    height: 540px;
+    max-height: 75vh;
+    max-width: 75vw;
     margin: 0 0 10px;
-}
-
-@media screen and (max-width: 920px) {
-    .image-popup__picture {
-        width: 240px;
-        height: 299px;
-    }
 }

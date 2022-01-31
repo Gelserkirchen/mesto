@@ -36,7 +36,7 @@ const initialCards = [
 ];
 
 function render() {
-  initialCards.forEach(renderItem);
+  initialCards.reverse().forEach(renderItem);
 }
 
 function renderItem(obj) {
@@ -54,7 +54,7 @@ function renderItem(obj) {
   deleteButton.addEventListener('click', deleteCardHandler);
   imageCard.addEventListener('click', openCardImageHandler)
 
-  cardsContainer.appendChild(Item);
+  cardsContainer.prepend(Item);
 }
 
 function likeHandler(evt) {
@@ -119,7 +119,7 @@ function openPopup(inputsHandler, popupName, firstPlaceholder, secondPlaceholder
   const profilePopupCloseButton = templatePopup.querySelector('.popup__close-button');
   profilePopupCloseButton.addEventListener('click', closePopup);
 
-  // set name for input
+  // set name for popup and nameInput
   templatePopup.querySelector('.popup__title').textContent = popupName;
   const namePopupInput = templatePopup.querySelector('.popup__input_type_name');
   namePopupInput.setAttribute('placeholder', firstPlaceholder);
