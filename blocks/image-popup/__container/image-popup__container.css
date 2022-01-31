@@ -1,0 +1,10 @@
+.image-popup__container{
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: flex-start;
+    margin: 0 auto;
+    padding: 0;
+    width: fit-content;
+}

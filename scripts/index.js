@@ -40,14 +40,42 @@ function render() {
 
 function renderItem(obj) {
   const Item = card.cloneNode(true);
+
+  // Set image and name to card item
   Item.querySelector('.card__image').src = obj.link;
   Item.querySelector('.card__text').textContent = obj.name;
-  Item.addEventListener('click', likeHandler)
+  const likeButton = Item.querySelector('.card__like-button');
+  const deleteButton = Item.querySelector('.card__delete-button');
+  const imageCard = Item.querySelector('.card__image');
+
+  // Add EvtListener to card
+  likeButton.addEventListener('click', likeHandler);
+  deleteButton.addEventListener('click', deleteCardHandler);
+  imageCard.addEventListener('click', openCardImageHandler)
   cardsContainer.appendChild(Item);
 }
 
 function likeHandler(evt) {
+  const likeButton = evt.target
+  if (!likeButton.classList.contains('card__like-button_active')) {
+    console.log('i am here');
+    likeButton.classList.add('card__like-button_active');
+    likeButton.classList.remove('card__like-button');
 
+  } else {
+    console.log('i am not here');
+    likeButton.classList.add('card__like-button');
+    likeButton.classList.remove('card__like-button_active');
+  }
+}
+
+function deleteCardHandler(evt) {
+  evt.target.closest('.card').remove();
+}
+
+function openCardImageHandler(evt) {
+  const image = evt.target;
+  console.log(image)
 }
 
 // Open popup
@@ -82,15 +110,12 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   const popup = evt.target.closest('.popup');
   removePopupEventListeners(evt, popup);
-  // debugger
   profileName.textContent = popup.querySelector('.popup__input_type_name').value;
   profileJob.textContent = popup.querySelector('.popup__input_type_profile').value;
   closePopup(evt);
 }
 
 function removePopupEventListeners(evt, popup) {
-
-  // debugger
   const closeButton = popup.querySelector('.popup__close-button');
   closeButton.removeEventListener('click', closePopup);
 
@@ -98,14 +123,6 @@ function removePopupEventListeners(evt, popup) {
   inputs.removeEventListener('submit', formSubmitHandler);
 }
 
-// add Event Listeners to objects
-
 profileEditPopupButton.addEventListener('click', openPopup);
-
-// profilePopup.addEventListener('click', function (event) {
-//   if (event.target === event.currentTarget) {
-//     closePopup();
-//   }
-// })
 
 render();
