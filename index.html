@@ -34,21 +34,6 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <template class="popup__template">
-        <div class="popup">
-            <div class="popup__container">
-                <button class="popup__close-button" type="button"></button>
-                <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="popup__inputs">
-                    <input class="popup__input popup__input_type_name" type="text" id="name" placeholder="Имя">
-                    <input class="popup__input popup__input_type_profile" type="text" id="profile"
-                           placeholder="Профессия">
-                    <button class="popup__save-button" type="submit">Сохранить</button>
-                </form>
-            </div>
-        </div>
-    </template>
-
     <template class="card__template">
         <div class="card">
             <button class="card__delete-button" type="button"></button>
@@ -60,16 +45,41 @@
         </div>
     </template>
 
-
-    <template class="image-popup__template">
-        <div class="image-popup">
-            <div class="image-popup__container">
-                <button class="image__close-button" type="button"></button>
-                <img class="image-popup__picture" src="#" alt="Картинка природы России">
-                <p class="image-popup__description"></p>
-            </div>
+    <div class="popup popup_type_profile">
+        <div class="popup__container ">
+            <button class="popup__close-button" type="button"></button>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form class="popup__inputs">
+                <input class="popup__input popup__input_type_name" type="text" placeholder="Имя">
+                <input class="popup__input popup__input_type_profile" type="text"
+                       placeholder="Профессия">
+                <button class="popup__save-button" type="submit">Сохранить</button>
+            </form>
         </div>
-    </template>
+    </div>
+
+
+    <div class="popup popup_type_new-card">
+        <div class="popup__container">
+            <button class="popup__close-button" type="button"></button>
+            <h3 class="popup__title">Новое место</h3>
+            <form class="popup__inputs">
+                <input class="popup__input popup__input_type_name" type="text" placeholder="Название">
+                <input class="popup__input popup__input_type_profile" type="text"
+                       placeholder="Ссылка на картинку">
+                <button class="popup__save-button" type="submit">Создать</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="image-popup">
+        <div class="image-popup__container">
+            <button class="popup__close-button" type="button"></button>
+            <img class="image-popup__picture" src="#" alt="Картинка природы России">
+            <p class="image-popup__description"></p>
+        </div>
+    </div>
 
 </div>
 <script src="scripts/index.js"></script>
