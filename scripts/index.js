@@ -152,7 +152,7 @@ function closePopup(evt) {
   const popup = evt.target.closest('.popup_opened');
   removePopupEventListeners(evt, popup);
   popup.classList.remove('popup_opened');
-  bodyRoot.removeChild(popup);
+  // bodyRoot.removeChild(popup);
 }
 
 // Remove profile popup listeners
