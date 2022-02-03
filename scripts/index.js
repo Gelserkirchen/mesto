@@ -90,7 +90,7 @@ function openCardImageHandler(evt) {
   imagePopup.querySelector('.image-popup__description').textContent = imageDescription;
   openPopup(imagePopup);
 
-  imagePopup.querySelector('.popup__close-button').addEventListener('click', closeImagePopup);
+  imagePopup.querySelector('.close-button').addEventListener('click', closeImagePopup);
   bodyRoot.appendChild(imagePopup);
 }
 
@@ -112,7 +112,7 @@ function renderProfilePopup() {
   placePopupFormInputs.addEventListener('submit', handleProfileFormSubmit);
 
   // add listener for close button
-  const profilePopupCloseButton = profilePopup.querySelector('.popup__close-button');
+  const profilePopupCloseButton = profilePopup.querySelector('.close-button');
   profilePopupCloseButton.addEventListener('click', closePopup);
 
   openPopup(profilePopup);
@@ -125,7 +125,7 @@ function renderNewCardPopup() {
   placePopupFormInputs.addEventListener('submit', addNewCardHandler);
 
   // add listener for close button
-  const profilePopupCloseButton = newCardPopup.querySelector('.popup__close-button');
+  const profilePopupCloseButton = newCardPopup.querySelector('.close-button');
   profilePopupCloseButton.addEventListener('click', closePopup);
 
   openPopup(newCardPopup);
@@ -163,7 +163,7 @@ function closePopup(evt) {
 
 // Remove profile popup listeners
 function removePopupEventListeners(evt, popup) {
-  const closeButton = popup.querySelector('.popup__close-button');
+  const closeButton = popup.querySelector('.close-button');
   closeButton.removeEventListener('click', closePopup);
 
   const inputs = popup.querySelector('.popup__inputs');
