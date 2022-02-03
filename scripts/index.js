@@ -4,8 +4,8 @@ const card = document.querySelector('.card__template').content;
 const cardsContainer = document.querySelector('.cards');
 const bodyRoot = document.querySelector('.root');
 const profileEditPopupButton = document.querySelector('.profile__edit-button');
-const profilePopup = document.querySelector('.popup__container_type_profile');
-const newCardPopup = document.querySelector('.popup__container_type_new-card');
+const profilePopup = document.querySelector('.popup_type_profile');
+const newCardPopup = document.querySelector('.popup_type_new-card');
 const imagePopup = document.querySelector('.image-popup');
 const addNewCardButton = document.querySelector('.profile__add-button');
 
