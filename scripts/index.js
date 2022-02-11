@@ -115,6 +115,9 @@ function openCardImageHandler(evt) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keypress', (evt) => {
+      console.log(evt.key);
+  })
 }
 
 function renderProfilePopup() {
@@ -136,6 +139,10 @@ function handleProfileFormSubmit(evt) {
 // Close popup without saving
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+}
+
+function closePopupByEscOrClick() {
+
 }
 
 // Add listeners

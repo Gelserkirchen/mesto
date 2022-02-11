@@ -1,0 +1,11 @@
+.popup__input-error {
+    display: none;
+}
+
+.popup__input-error:invalid {
+    display: block;
+}
+
+.popup__input-error:valid {
+    display: none;
+}
