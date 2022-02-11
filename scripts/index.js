@@ -9,6 +9,7 @@ const imagePopup = document.querySelector('.image-popup');
 const addNewCardButton = document.querySelector('.profile__add-button');
 const image = imagePopup.querySelector('.image-popup__picture');
 const imagePopupDescription = imagePopup.querySelector('.image-popup__description');
+const inputsOfNewCardPopup = newCardPopup.querySelectorAll('.popup__input');
 const inputProfileName = profilePopup.querySelector('.popup__input_type_name');
 const inputProfileProfession = profilePopup.querySelector('.popup__input_type_profile');
 
@@ -165,6 +166,7 @@ imagePopup.querySelector('.popup__close-button').addEventListener('click', () =>
 });
 newCardPopup.querySelector('.popup__inputs').addEventListener('submit', addNewCardHandler);
 newCardPopup.querySelector('.popup__close-button').addEventListener('click', () => {
+  inputsOfNewCardPopup.forEach(item => item.value = '');
   closePopup(newCardPopup)
 });
 newCardPopup.addEventListener('click', (evt) => {
@@ -180,11 +182,4 @@ profilePopup.addEventListener('click', (evt) => {
 })
 
 
-
 render();
-
-// profilePopup.addEventListener('click', function (event) {
-//   if (event.target === event.currentTarget) {
-//     closePopup();
-//   }
-// })
