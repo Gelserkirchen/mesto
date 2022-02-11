@@ -113,13 +113,6 @@ function openCardImageHandler(evt) {
   openPopup(imagePopup);
 }
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keypress', (evt) => {
-      console.log(evt.key);
-  })
-}
-
 function renderProfilePopup() {
   inputProfileName.value = profileName.textContent;
   inputProfileProfession.value = profileJob.textContent;
@@ -136,18 +129,37 @@ function handleProfileFormSubmit(evt) {
   closePopup(profilePopup);
 }
 
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByClickOnEsc);
+}
+
 // Close popup without saving
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keypress', closePopupByClickOnEsc);
 }
 
-function closePopupByEscOrClick() {
+function closePopupByClickOnEsc(evt) {
+  if (evt.key === 'Escape') {
+    document.querySelector('.popup_opened').classList.remove('popup_opened');
+  }
+}
 
+function closePopupByClickOnDarkBackground(evt, nameOfPopup) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(nameOfPopup);
+  }
 }
 
 // Add listeners
 profileEditPopupButton.addEventListener('click', renderProfilePopup);
 addNewCardButton.addEventListener('click', renderNewCardPopup);
+
+imagePopup.addEventListener('click', (evt) => {
+  closePopupByClickOnDarkBackground(evt, imagePopup);
+})
+
 imagePopup.querySelector('.popup__close-button').addEventListener('click', () => {
   closePopup(imagePopup)
 });
@@ -155,9 +167,24 @@ newCardPopup.querySelector('.popup__inputs').addEventListener('submit', addNewCa
 newCardPopup.querySelector('.popup__close-button').addEventListener('click', () => {
   closePopup(newCardPopup)
 });
+newCardPopup.addEventListener('click', (evt) => {
+  closePopupByClickOnDarkBackground(evt, newCardPopup);
+})
+
 profilePopup.querySelector('.popup__inputs').addEventListener('submit', handleProfileFormSubmit);
 profilePopup.querySelector('.popup__close-button').addEventListener('click', () => {
   closePopup(profilePopup)
 });
+profilePopup.addEventListener('click', (evt) => {
+  closePopupByClickOnDarkBackground(evt, profilePopup);
+})
+
+
 
 render();
+
+// profilePopup.addEventListener('click', function (event) {
+//   if (event.target === event.currentTarget) {
+//     closePopup();
+//   }
+// })
