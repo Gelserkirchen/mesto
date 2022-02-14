@@ -18,17 +18,17 @@ const setEventListeners = (formElement, validationParams) => {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(formElement, inputElement, validationParams.inputErrorClass, validationParams.errorClass);
-
       toggleButtonState(inputList, buttonElement, validationParams.inactiveButtonClass);
     });
   });
 };
 
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
-  // debugger
   if (hasInvalidInput(inputList)) {
+    buttonElement.disabled = true;
     buttonElement.classList.add(inactiveButtonClass);
   } else {
+    buttonElement.disabled = false;
     buttonElement.classList.remove(inactiveButtonClass);
   }
 };
