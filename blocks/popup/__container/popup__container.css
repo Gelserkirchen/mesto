@@ -12,9 +12,15 @@
     transform: translate(calc(50vw - 50%), calc(50vh - 50%));
 }
 
+@media screen and (max-width: 520px) {
+    .popup__container {
+        margin: 0 auto;
+        max-width: 238px;
+    }
+}
+
 @media screen and (max-width: 370px) {
     .popup__container {
-        margin: 0 19px;
         padding: 25px 22px 25px;
     }
 }

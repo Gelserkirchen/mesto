@@ -1,6 +1,3 @@
-// 1 косяк - не блокируется кнопка попапа с добавлением новой карты при открытии
-// 2 косяк - размеры попапов на ширине 320 слетают из за медиа паддингов
-
 const enableValidation = (validationParams) => {
   const formList = Array.from(document.querySelectorAll(validationParams.formSelector));
 
