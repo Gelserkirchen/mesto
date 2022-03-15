@@ -55,7 +55,7 @@
                     <label for="name-input" class="popup__label">
                         <input id="name-input" class="popup__input popup__input_type_name" type="text" placeholder="Имя"
                             minlength="2" maxlength="40" required>
-                        <span class="popup__input-error name-input-error">Текст ошибки</span>
+                        <span id="error-of-input" class="popup__input-error name-input-error">Текст ошибки</span>
                     </label>
 
                     <label for="profession-input" class="popup__label">
@@ -74,7 +74,7 @@
             <div class="popup__container">
                 <button class="popup__close-button" type="button"></button>
                 <h3 class="popup__title">Новое место</h3>
-                <form class="popup__inputs" novalidate>
+                <form class="popup__inputs" id="popup__place-form" novalidate>
                     <label for="place-input" class="popup__label">
                         <input id="place-input" class="popup__input popup__input_type_place" type="text"
                             placeholder="Название" minlength="2" maxlength="40" required>

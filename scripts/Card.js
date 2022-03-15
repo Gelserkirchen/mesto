@@ -1,25 +1,23 @@
-import { openPopup } from './index.js'
-import { imagePopup, image, imagePopupDescription } from './constants.js';
-
+import { openPopup, imagePopup, image, imagePopupDescription } from './index.js'
 export class Card {
     constructor(data, templateSelector) {
         this._data = data;
         this._templateSelector = templateSelector;
     }
 
-    _handleLikeButton() { 
+    _handleLikeButton() {
         this.classList.toggle('card__like-button_active');
         this.classList.toggle('card__like-button');
     }
 
     _handleCardDelete() {
-        this.closest('.card').remove(); 
+        this.closest('.card').remove();
     }
 
     // open image to full screen
     _handleOpenCardImage() {
         image.src = this.src;
-        image.alt = this.alt; 
+        image.alt = this.alt;
         imagePopupDescription.textContent = this.alt;
 
         openPopup(imagePopup);
@@ -41,8 +39,6 @@ export class Card {
         likeButton.addEventListener('click', this._handleLikeButton);
         deleteButton.addEventListener('click', this._handleCardDelete);
         cardImage.addEventListener('click', this._handleOpenCardImage);
-
-        console.log('i am here')
 
         return cardElement
     }
