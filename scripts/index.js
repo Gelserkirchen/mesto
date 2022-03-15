@@ -1,3 +1,6 @@
+import {FormValidator} from './FormValidator.js'
+import {Card} from './Card.js'
+
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
 const card = document.querySelector('.card__template').content;
@@ -15,6 +18,20 @@ const inputProfileProfession = profilePopup.querySelector('.popup__input_type_pr
 const inputPlaceName = newCardPopup.querySelector('.popup__input_type_place');
 const inputPlaceLink = newCardPopup.querySelector('.popup__input_type_link');
 const addNewCardPopupButton = newCardPopup.querySelector('.popup__save-button');
+const validationSettings = {
+  formSelector: '.popup__inputs',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_inactive',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input-error_active'
+};
+
+const newCardValidation = new FormValidator(validationSettings, profilePopup);
+const profileValidation = new FormValidator(validationSettings, newCardPopup);
+
+newCardValidation.enableValidation();
+profileValidation.enableValidation();
 
 const initialCards = [
   {
