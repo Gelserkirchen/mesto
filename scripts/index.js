@@ -88,7 +88,7 @@ function handleNewCard(evt) {
   clearInputs();
   newCardValidation.disableButtonState();
   closePopup(newCardPopup);
-  
+
   const item = renderItem(data);
   insertItem(item);
 }

@@ -50,7 +50,7 @@ export class FormValidator {
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._isValid(inputElement);
-                
+
                 if (this._hasInvalidInput()) {
                     this.disableButtonState();
                 } else {
