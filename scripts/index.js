@@ -60,7 +60,12 @@ const initialCards = [
 ];
 
 function render() {
-  initialCards.reverse().forEach(renderItem);
+  initialCards.reverse().forEach(
+    (data) => {
+      const item = renderItem(data);
+      insertItem(item);
+    }
+  );
 }
 
 function openCardPopup() {
@@ -70,11 +75,6 @@ function openCardPopup() {
 function clearInputs() {
   inputPlaceName.value = '';
   inputPlaceLink.value = '';
-}
-
-function disableButton() {
-  addNewCardPopupButton.disabled = true;
-  addNewCardPopupButton.classList.add('popup__save-button_inactive');
 }
 
 // Add new card to cards
@@ -87,13 +87,19 @@ function handleNewCard(evt) {
   data.link = inputPlaceLink.value;
 
   clearInputs();
-  disableButton();
+  newCardValidation.disableButtonState();
   closePopup(newCardPopup);
-  renderItem(data);
+  
+  const item = renderItem(data);
+  insertItem(item);
 }
 
 function renderItem(data) {
-  const item = new Card(data, '.card__template')
+  const item = new Card(data, '.card__template');
+  return item;
+}
+
+function insertItem(item) {
   cardsContainer.prepend(item.createCard());
 }
 
@@ -152,7 +158,7 @@ imagePopup.querySelector('.popup__close-button').addEventListener('click', () =>
 newCardPopup.querySelector('.popup__inputs').addEventListener('submit', handleNewCard);
 newCardPopup.querySelector('.popup__close-button').addEventListener('click', () => {
   clearInputs();
-  disableButton();
+  newCardValidation.disableButtonState();
   newCardValidation.resetForm();
   closePopup(newCardPopup);
 });
@@ -162,9 +168,13 @@ newCardPopup.addEventListener('click', (evt) => {
 
 profilePopup.querySelector('.popup__inputs').addEventListener('submit', handleProfileFormSubmit);
 profilePopup.querySelector('.popup__close-button').addEventListener('click', () => {
+  profileValidation.disableButtonState();
+  profileValidation.resetForm();
   closePopup(profilePopup)
 });
 profilePopup.addEventListener('click', (evt) => {
+  profileValidation.disableButtonState();
+  profileValidation.resetForm();
   closePopupByClickOnDarkBackground(evt, profilePopup);
 })
 
