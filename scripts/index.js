@@ -10,7 +10,6 @@ const cardsContainer = document.querySelector('.cards');
 const profileEditPopupButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.popup_type_profile');
 const newCardPopup = document.querySelector('.popup_type_new-card');
-// const imagePopup = document.querySelector('.image-popup');
 const addNewCardButton = document.querySelector('.profile__add-button');
 const inputProfileName = profilePopup.querySelector('.popup__input_type_name');
 const inputProfileProfession = profilePopup.querySelector('.popup__input_type_profile');
