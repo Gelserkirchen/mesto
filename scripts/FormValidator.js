@@ -64,7 +64,7 @@ export class FormValidator {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement)
         })
-    }    
+    }
 
     enableValidation() {
         this._form.addEventListener('submit', (evt) => {
