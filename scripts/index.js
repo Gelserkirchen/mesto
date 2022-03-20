@@ -157,7 +157,6 @@ imagePopup.querySelector('.popup__close-button').addEventListener('click', () =>
 newCardPopup.querySelector('.popup__inputs').addEventListener('submit', handleNewCard);
 newCardPopup.querySelector('.popup__close-button').addEventListener('click', () => {
   clearInputs();
-  newCardValidation.disableButtonState();
   newCardValidation.resetForm();
   closePopup(newCardPopup);
 });
@@ -167,13 +166,13 @@ newCardPopup.addEventListener('click', (evt) => {
 
 profilePopup.querySelector('.popup__inputs').addEventListener('submit', handleProfileFormSubmit);
 profilePopup.querySelector('.popup__close-button').addEventListener('click', () => {
-  profileValidation.disableButtonState();
   profileValidation.resetForm();
+  profileValidation.enableButtonState();
   closePopup(profilePopup)
 });
 profilePopup.addEventListener('click', (evt) => {
-  profileValidation.disableButtonState();
   profileValidation.resetForm();
+  profileValidation.enableButtonState();
   closePopupByClickOnDarkBackground(evt, profilePopup);
 })
 
