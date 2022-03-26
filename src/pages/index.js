@@ -1,9 +1,9 @@
-import {FormValidator} from '../components/FormValidator.js'
-import {Card} from '../components/Card.js'
-import {Section} from '../components/Section.js'
-import {PopupWithForm} from '../components/PopupWithForm.js'
-import {PopupWithImage} from '../components/PopupWithImage.js'
-import {UserInfo} from '../components/UserInfo.js'
+import { FormValidator } from '../components/FormValidator.js'
+import { Card } from '../components/Card.js'
+import { Section } from '../components/Section.js'
+import { PopupWithForm } from '../components/PopupWithForm.js'
+import { PopupWithImage } from '../components/PopupWithImage.js'
+import { UserInfo } from '../components/UserInfo.js'
 
 import {
   addNewCardButton,
@@ -20,28 +20,43 @@ import {
   profilePopup,
   validationSettings,
   initialCards,
-  newCardPopupSelector
-} from '../utils/constants';
+  newCardPopupSelector,
+  cardsContainerSelector
+} from '../utils/constants.js';
+
 
 
 // создаем новую карточку 
-const newCardPopupB = new PopupWithImage(newCardPopupSelector, handleNewCard);
+// const newCardPopupB = new PopupWithImage(newCardPopupSelector, handleNewCard);
+// const newCardValidation = new FormValidator(validationSettings, newCardPopupB);
+// newCardValidation.enableValidation();
 
-const newCardValidation = new FormValidator(validationSettings, newCardPopupB);
 const profileValidation = new FormValidator(validationSettings, profilePopup);
-
-newCardValidation.enableValidation();
 profileValidation.enableValidation();
 
-function renderCardItem(data) { // data это
-  const item = new Card(data, '.card__template', handleNewCard);
+function closePopupImage() {
+  debugger
+}
+
+function handleCardClick() {
+  // debugger
+  const imagePopup = new PopupWithImage('.image-popup', closePopupImage); //сюда засунуть закрывашку
+  imagePopup.open(this);
+}
+
+function renderItems(data) { // data это
+  const item = new Card(data, '.card__template', handleCardClick);  // данные, шаблон карточки, клик на карту
   return item;
 }
 
 function render() {
-  const cards = new Section({initialCards, renderItems: renderCardItem}, cardsContainer);
+  const cards = new Section({ items: initialCards, renderer: renderItems }, cardsContainerSelector);
   const items = cards.renderItems();
-  cards.addItem(items);
+
+  items.forEach((item) => {
+    cards.addItem(item);
+  })
+
 }
 
 function openCardPopup() {
@@ -55,14 +70,14 @@ function clearInputs() {
 
 // Add new card to cards
 function handleNewCard(evt, data) {
-    evt.preventDefault();
+  evt.preventDefault();
 
-    const section = new Section({data, renderItems: renderCardItem}, cardsContainer);
+  const section = new Section({ data, renderItems: renderCardItem }, cardsContainer);
 
-    const items = section.renderItems();
-    items.forEach((item) => {
-      section.addItem(item);
-    });
+  const items = section.renderItems();
+  items.forEach((item) => {
+    section.addItem(item);
+  });
 }
 
 function insertItem(item) {
@@ -117,11 +132,13 @@ imagePopup.addEventListener('click', (evt) => {
   closePopupByClickOnDarkBackground(evt, imagePopup);
 })
 
-imagePopup.querySelector('.popup__close-button').addEventListener('click', () => {
-  closePopup(imagePopup)
-});
+// imagePopup.querySelector('.popup__close-button').addEventListener('click', () => {
+//   closePopup(imagePopup)
+// });
+
+
 newCardPopup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {
-  const data = new UserInfo({inputPlaceName, inputPlaceLink});
+  const data = new UserInfo({ inputPlaceName, inputPlaceLink });
   handleNewCard(evt, data);
 });
 

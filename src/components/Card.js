@@ -1,6 +1,6 @@
-import { openPopup} from '../pages'
-import {image, imagePopupDescription} from '../utils/constants';
-import {PopupWithImage} from './PopupWIthImage';
+import { openPopup} from '../pages/index.js'
+import {image, imagePopupDescription} from '../utils/constants.js';
+import {PopupWithImage} from './PopupWIthImage.js';
 // import {image, imagePopup, imagePopupDescription} from '../utils/constants';
 export class Card {
     constructor(data, templateSelector, submitFormHandler) {
@@ -20,8 +20,9 @@ export class Card {
 
     // open image to full screen
     _handleOpenCardImage() {
-        const imagePopup = new PopupWithImage(this._templateSelector, this._submitFormHandler);
-        imagePopup.open(this._data);
+        // debugger
+        // const imagePopup = new PopupWithImage('.image-popup', this._submitFormHandler);
+        // imagePopup.open(this._data);
     }
 
     createCard() {
@@ -39,7 +40,7 @@ export class Card {
         // Add EvtListener to card
         likeButton.addEventListener('click', this._handleLikeButton);
         deleteButton.addEventListener('click', this._handleCardDelete);
-        cardImage.addEventListener('click', this._handleOpenCardImage);
+        cardImage.addEventListener('click', this._submitFormHandler);
 
         return cardElement
     }

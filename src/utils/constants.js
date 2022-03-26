@@ -4,6 +4,7 @@ export const imagePopupDescription = imagePopup.querySelector('.image-popup__des
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__profession');
 export const cardsContainer = document.querySelector('.cards');
+export const cardsContainerSelector = '.cards';
 export const profileEditPopupButton = document.querySelector('.profile__edit-button');
 export const profilePopup = document.querySelector('.popup_type_profile');
 export const newCardPopup = document.querySelector('.popup_type_new-card');

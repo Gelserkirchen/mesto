@@ -1,28 +1,22 @@
-import {Popup} from './Popup';
-import {image, imagePopupDescription} from '../utils/constants';
+import {Popup} from './Popup.js';
+import {image, imagePopupDescription, imagePopup} from '../utils/constants.js';
 
 export class PopupWithImage extends Popup {
     constructor(popupSelector, submitFormHandler) {
-        super(popupSelector);
-        this._submitFormHandler = submitFormHandler;
+        super(popupSelector); // выбрать попап
+        this._submitFormHandler = submitFormHandler; // добавить попапу хендлеры
     }
 
     open(data) {
-        image.src = data.link;
-        image.alt = data.name;
-        imagePopupDescription.textContent = this._data.name;
-    }
-
-    close() {
-        
-    }
-
-    _getInputValues() {
-
+        super.open(); 
+        image.src = data.src;
+        image.alt = data.alt;
+        imagePopupDescription.textContent = data.alt;
+        this.setEventListeners();
     }
 
     setEventListeners() {
         super.setEventListeners();
-        this._submitFormHandler();
+        imagePopup.querySelector('.popup__close-button').addEventListener('click', this.close.bind(this));
     }
 }

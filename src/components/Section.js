@@ -1,4 +1,4 @@
-export class Section {
+export class Section { // Класс просто рисует карточки
     constructor({items, renderer}, containerSelector) {
         this._data = items;
         this._renderer = renderer;
@@ -6,15 +6,15 @@ export class Section {
     }
 
     renderItems() { // нарисовать картину
-        this._renderedItems = {};
+        this._renderedItems = [];
         this._data.forEach((item) => {
             const newItem = this._renderer(item);
-            this._renderedItems.push(newItem);
+            this._renderedItems.push(newItem)
         });
         return this._renderedItems;
     }
 
     addItem(item) { // повесить картину
-        this._container.prepend(item.createCard());
+        this._container.append(item.createCard());
     }
 }
