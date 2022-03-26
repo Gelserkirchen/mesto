@@ -1,29 +1,20 @@
-import { FormValidator } from '../components/FormValidator.js'
-import { Card } from '../components/Card.js'
-
-export const imagePopup = document.querySelector('.image-popup');
-export const image = imagePopup.querySelector('.image-popup__picture');
-export const imagePopupDescription = imagePopup.querySelector('.image-popup__description');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__profession');
-const cardsContainer = document.querySelector('.cards');
-const profileEditPopupButton = document.querySelector('.profile__edit-button');
-const profilePopup = document.querySelector('.popup_type_profile');
-const newCardPopup = document.querySelector('.popup_type_new-card');
-const addNewCardButton = document.querySelector('.profile__add-button');
-const inputProfileName = profilePopup.querySelector('.popup__input_type_name');
-const inputProfileProfession = profilePopup.querySelector('.popup__input_type_profile');
-const inputPlaceName = newCardPopup.querySelector('.popup__input_type_place');
-const inputPlaceLink = newCardPopup.querySelector('.popup__input_type_link');
-// const addNewCardPopupButton = newCardPopup.querySelector('.popup__save-button');
-const validationSettings = {
-  formSelector: '.popup__inputs',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_inactive',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__input-error_active'
-};
+import {FormValidator} from '../components/FormValidator.js'
+import {Card} from '../components/Card.js'
+import {
+  addNewCardButton,
+  cardsContainer,
+  imagePopup,
+  inputPlaceLink,
+  inputPlaceName,
+  inputProfileName,
+  inputProfileProfession,
+  newCardPopup,
+  profileEditPopupButton,
+  profileJob,
+  profileName,
+  profilePopup,
+  validationSettings
+} from '../utils/constants';
 
 const newCardValidation = new FormValidator(validationSettings, newCardPopup);
 const profileValidation = new FormValidator(validationSettings, profilePopup);

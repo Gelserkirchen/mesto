@@ -1,4 +1,5 @@
-import { openPopup, imagePopup, image, imagePopupDescription } from '../pages'
+import { openPopup} from '../pages'
+import {image, imagePopup, imagePopupDescription} from '../utils/constants';
 export class Card {
     constructor(data, templateSelector, handleCardClick) {
         this._data = data;
