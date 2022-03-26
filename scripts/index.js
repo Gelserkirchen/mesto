@@ -15,7 +15,7 @@ const inputProfileName = profilePopup.querySelector('.popup__input_type_name');
 const inputProfileProfession = profilePopup.querySelector('.popup__input_type_profile');
 const inputPlaceName = newCardPopup.querySelector('.popup__input_type_place');
 const inputPlaceLink = newCardPopup.querySelector('.popup__input_type_link');
-const addNewCardPopupButton = newCardPopup.querySelector('.popup__save-button');
+// const addNewCardPopupButton = newCardPopup.querySelector('.popup__save-button');
 const validationSettings = {
   formSelector: '.popup__inputs',
   inputSelector: '.popup__input',
