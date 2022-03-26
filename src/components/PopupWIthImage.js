@@ -18,5 +18,6 @@ export class PopupWithImage extends Popup {
     setEventListeners() {
         super.setEventListeners();
         imagePopup.querySelector('.popup__close-button').addEventListener('click', this.close.bind(this));
+        
     }
 }

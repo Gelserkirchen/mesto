@@ -118,19 +118,19 @@ function closePopupByClickOnEsc(evt) {
   // }
 }
 
-function closePopupByClickOnDarkBackground(evt, nameOfPopup) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(nameOfPopup);
-  }
-}
+// function closePopupByClickOnDarkBackground(evt, nameOfPopup) {
+//   if (evt.target === evt.currentTarget) {
+//     closePopup(nameOfPopup);
+//   }
+// }
 
 // Add listeners
 profileEditPopupButton.addEventListener('click', renderProfilePopup);
 addNewCardButton.addEventListener('click', openCardPopup);
 
-imagePopup.addEventListener('click', (evt) => {
-  closePopupByClickOnDarkBackground(evt, imagePopup);
-})
+// imagePopup.addEventListener('click', (evt) => {
+//   closePopupByClickOnDarkBackground(evt, imagePopup);
+// })
 
 // imagePopup.querySelector('.popup__close-button').addEventListener('click', () => {
 //   closePopup(imagePopup)
