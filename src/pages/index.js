@@ -1,6 +1,10 @@
 import {FormValidator} from '../components/FormValidator.js'
 import {Card} from '../components/Card.js'
 import {Section} from '../components/Section.js'
+import {PopupWithForm} from '../components/PopupWithForm.js'
+import {PopupWithImage} from '../components/PopupWithImage.js'
+import {UserInfo} from '../components/UserInfo.js'
+
 import {
   addNewCardButton,
   cardsContainer,
@@ -15,27 +19,29 @@ import {
   profileName,
   profilePopup,
   validationSettings,
-  initialCards
+  initialCards,
+  newCardPopupSelector
 } from '../utils/constants';
 
+
 // создаем новую карточку 
+const newCardPopupB = new PopupWithImage(newCardPopupSelector, handleNewCard);
 
-
-
-const newCardValidation = new FormValidator(validationSettings, newCardPopup);
+const newCardValidation = new FormValidator(validationSettings, newCardPopupB);
 const profileValidation = new FormValidator(validationSettings, profilePopup);
 
 newCardValidation.enableValidation();
 profileValidation.enableValidation();
 
+function renderCardItem(data) { // data это
+  const item = new Card(data, '.card__template', handleNewCard);
+  return item;
+}
 
 function render() {
-  initialCards.reverse().forEach(
-    (data) => {
-      const item = renderItem(data);
-      insertItem(item);
-    }
-  );
+  const cards = new Section({initialCards, renderItems: renderCardItem}, cardsContainer);
+  const items = cards.renderItems();
+  cards.addItem(items);
 }
 
 function openCardPopup() {
@@ -48,29 +54,19 @@ function clearInputs() {
 }
 
 // Add new card to cards
-function handleNewCard(evt) {
-  evt.preventDefault();
+function handleNewCard(evt, data) {
+    evt.preventDefault();
 
-  const data = {};
+    const section = new Section({data, renderItems: renderCardItem}, cardsContainer);
 
-  data.name = inputPlaceName.value;
-  data.link = inputPlaceLink.value;
-
-  clearInputs();
-  newCardValidation.disableButtonState();
-  closePopup(newCardPopup);
-
-  const item = renderItem(data);
-  insertItem(item);
-}
-
-function renderItem(data) {
-  const item = new Card(data, '.card__template');
-  return item;
+    const items = section.renderItems();
+    items.forEach((item) => {
+      section.addItem(item);
+    });
 }
 
 function insertItem(item) {
-  cardsContainer.prepend(item.createCard());
+  // cardsContainer.prepend(item.createCard());
 }
 
 function renderProfilePopup() {
@@ -100,7 +96,6 @@ function closePopup(popup) {
   // document.removeEventListener('keydown', closePopupByClickOnEsc);
 }
 
-
 function closePopupByClickOnEsc(evt) {
   // if (evt.key === 'Escape') {
   //   const currentPopup = document.querySelector('.popup_opened');
@@ -125,7 +120,11 @@ imagePopup.addEventListener('click', (evt) => {
 imagePopup.querySelector('.popup__close-button').addEventListener('click', () => {
   closePopup(imagePopup)
 });
-newCardPopup.querySelector('.popup__inputs').addEventListener('submit', handleNewCard);
+newCardPopup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {
+  const data = new UserInfo({inputPlaceName, inputPlaceLink});
+  handleNewCard(evt, data);
+});
+
 newCardPopup.querySelector('.popup__close-button').addEventListener('click', () => {
   clearInputs();
   newCardValidation.resetForm();

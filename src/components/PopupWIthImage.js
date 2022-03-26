@@ -1,11 +1,16 @@
-class PopupWithImage extends Popup {
+import {Popup} from './Popup';
+import {image, imagePopupDescription} from '../utils/constants';
+
+export class PopupWithImage extends Popup {
     constructor(popupSelector, submitFormHandler) {
         super(popupSelector);
         this._submitFormHandler = submitFormHandler;
     }
 
-    open(src) {
-        this._src = src;
+    open(data) {
+        image.src = data.link;
+        image.alt = data.name;
+        imagePopupDescription.textContent = this._data.name;
     }
 
     close() {
@@ -18,5 +23,6 @@ class PopupWithImage extends Popup {
 
     setEventListeners() {
         super.setEventListeners();
+        this._submitFormHandler();
     }
 }

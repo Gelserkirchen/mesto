@@ -1,14 +1,20 @@
-class Popup {
+import {newCardPopup} from '../utils/constants';
+
+export class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
     }
 
     open() { // открыть попап
         this._popup.classList.add('popup_opened');
-        document.addEventListener('keydown', closePopupByClickOnEsc);
+        // document.addEventListener('keydown', closePopupByClickOnEsc);
     }
 
     close() { // закрыть попап
+        // clearInputs();
+        // newCardValidation.disableButtonState();
+        // closePopup(newCardPopup);
+
         this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', closePopupByClickOnEsc);
     }

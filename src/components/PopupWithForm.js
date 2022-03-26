@@ -1,3 +1,3 @@
-class PopupWithForm {
+export class PopupWithForm {
     
 }

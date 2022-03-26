@@ -1,9 +1,12 @@
 import { openPopup} from '../pages'
-import {image, imagePopup, imagePopupDescription} from '../utils/constants';
+import {image, imagePopupDescription} from '../utils/constants';
+import {PopupWithImage} from './PopupWIthImage';
+// import {image, imagePopup, imagePopupDescription} from '../utils/constants';
 export class Card {
-    constructor(data, templateSelector, handleCardClick) {
-        this._data = data;
-        this._templateSelector = templateSelector;
+    constructor(data, templateSelector, submitFormHandler) {
+        this._data = data; // name and link
+        this._templateSelector = templateSelector; // .card_template
+        this._submitFormHandler = submitFormHandler;
     }
 
     _handleLikeButton() {
@@ -17,11 +20,8 @@ export class Card {
 
     // open image to full screen
     _handleOpenCardImage() {
-        image.src = this.src;
-        image.alt = this.alt;
-        imagePopupDescription.textContent = this.alt;
-
-        openPopup(imagePopup);
+        const imagePopup = new PopupWithImage(this._templateSelector, this._submitFormHandler);
+        imagePopup.open(this._data);
     }
 
     createCard() {
