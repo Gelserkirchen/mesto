@@ -1,5 +1,6 @@
 import {FormValidator} from '../components/FormValidator.js'
 import {Card} from '../components/Card.js'
+import {Section} from '../components/Section.js'
 import {
   addNewCardButton,
   cardsContainer,
@@ -13,8 +14,13 @@ import {
   profileJob,
   profileName,
   profilePopup,
-  validationSettings
+  validationSettings,
+  initialCards
 } from '../utils/constants';
+
+// создаем новую карточку 
+
+
 
 const newCardValidation = new FormValidator(validationSettings, newCardPopup);
 const profileValidation = new FormValidator(validationSettings, profilePopup);
@@ -22,32 +28,6 @@ const profileValidation = new FormValidator(validationSettings, profilePopup);
 newCardValidation.enableValidation();
 profileValidation.enableValidation();
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 function render() {
   initialCards.reverse().forEach(
@@ -110,22 +90,22 @@ function handleProfileFormSubmit(evt) {
 }
 
 export function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByClickOnEsc);
+  // popup.classList.add('popup_opened');
+  // document.addEventListener('keydown', closePopupByClickOnEsc);
 }
 
 // Close popup without saving
 function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupByClickOnEsc);
+  // popup.classList.remove('popup_opened');
+  // document.removeEventListener('keydown', closePopupByClickOnEsc);
 }
 
 
 function closePopupByClickOnEsc(evt) {
-  if (evt.key === 'Escape') {
-    const currentPopup = document.querySelector('.popup_opened');
-    closePopup(currentPopup);
-  }
+  // if (evt.key === 'Escape') {
+  //   const currentPopup = document.querySelector('.popup_opened');
+  //   closePopup(currentPopup);
+  // }
 }
 
 function closePopupByClickOnDarkBackground(evt, nameOfPopup) {
