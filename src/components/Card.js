@@ -1,6 +1,6 @@
 import { openPopup, imagePopup, image, imagePopupDescription } from '../pages'
 export class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handleCardClick) {
         this._data = data;
         this._templateSelector = templateSelector;
     }
