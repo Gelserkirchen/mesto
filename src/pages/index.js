@@ -1,5 +1,5 @@
-import { FormValidator } from './FormValidator.js'
-import { Card } from './Card.js'
+import { FormValidator } from '../components/FormValidator.js'
+import { Card } from '../components/Card.js'
 
 export const imagePopup = document.querySelector('.image-popup');
 export const image = imagePopup.querySelector('.image-popup__picture');

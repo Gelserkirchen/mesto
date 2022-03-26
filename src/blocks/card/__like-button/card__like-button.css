@@ -1,17 +1,18 @@
-.card__like-button_active {
-    background: url("../../../../images/__like_active.svg");
+.card__like-button {
     margin: 0 20px 0 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     border: none;
+    background-color: unset;
     cursor: pointer;
+    background-image: url("../../../../images/__like.svg");
     background-size: cover;
     min-width: 22px;
     min-height: 19px;
 }
 
-.card__like-button_active:hover {
+.card__like-button:hover {
     opacity: 50%;
 }
