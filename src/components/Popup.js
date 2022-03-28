@@ -16,7 +16,6 @@ export class Popup {
     }
 
     _handleClosePopupByClickOnDarkBackground(evt) {
-        debugger
         if (evt.target === evt.currentTarget) {
             this.close();
         }
