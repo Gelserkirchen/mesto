@@ -61,16 +61,17 @@ export class FormValidator {
     };
 
     resetForm() {
+        debugger
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement)
         })
     }
 
     enableValidation() {
-        // this._form.addEventListener('submit', (evt) => {
-        //     evt.preventDefault();
-        // });
+        this._form.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+        });
 
-        // this._setEventListeners();
+        this._setEventListeners();
     };
 }

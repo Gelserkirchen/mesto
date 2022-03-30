@@ -24,13 +24,12 @@ import {
   cardsContainerSelector
 } from '../utils/constants.js';
 
-
-
 // создаем новую карточку 
 // const newCardPopupB = new PopupWithImage(newCardPopupSelector, handleNewCard);
 // const newCardValidation = new FormValidator(validationSettings, newCardPopupB);
 // newCardValidation.enableValidation();
 
+// PR8 
 const profileValidation = new FormValidator(validationSettings, profilePopup);
 profileValidation.enableValidation();
 
@@ -38,17 +37,20 @@ function closePopupImage() {
   debugger
 }
 
+// PR8 
 function handleCardClick() {
   // debugger
   const imagePopup = new PopupWithImage('.image-popup', closePopupImage); //сюда засунуть закрывашку
   imagePopup.open(this);
 }
 
+// PR8 
 function renderItems(data) { // data это
   const item = new Card(data, '.card__template', handleCardClick);  // данные, шаблон карточки, клик на карту
   return item;
 }
 
+// PR8 
 function render() {
   const cards = new Section({ items: initialCards, renderer: renderItems }, cardsContainerSelector);
   const items = cards.renderItems();
@@ -59,16 +61,25 @@ function render() {
 
 }
 
-function openCardPopup() {
-  openPopup(newCardPopup);
+// function openCardPopup() // { переименовал в -> function openPopup() { 
+//   const popup =  new PopupWithForm()
+//   openPopup(newCardPopup); 
+// }
+
+// PR8 
+function openPopupNew(popupSelector) { // instead of openCardPopup()
+  // debugger
+  const popup =  new PopupWithForm(popupSelector, handleProfileFormSubmit);
+  popup.setEventListeners(); // может быть сделать приватным
+  popup.open();
 }
 
 function clearInputs() {
-  inputPlaceName.value = '';
-  inputPlaceLink.value = '';
+  // inputPlaceName.value = '';
+  // inputPlaceLink.value = '';
 }
 
-// Add new card to cards
+// PR8 Callback add new card to cards
 function handleNewCard(evt, data) {
   evt.preventDefault();
 
@@ -92,6 +103,7 @@ function renderProfilePopup() {
 
 // Save result of popup to profile
 function handleProfileFormSubmit(evt) {
+  debugger
   evt.preventDefault();
 
   profileName.textContent = inputProfileName.value;
@@ -125,8 +137,9 @@ function closePopupByClickOnEsc(evt) {
 // }
 
 // Add listeners
-profileEditPopupButton.addEventListener('click', renderProfilePopup);
-addNewCardButton.addEventListener('click', openCardPopup);
+// profileEditPopupButton.addEventListener('click', renderProfilePopup);
+profileEditPopupButton.addEventListener('click', () => {openPopupNew('.popup_type_profile')});
+addNewCardButton.addEventListener('click', () => {openPopupNew('.popup_type_new-card')});
 
 // imagePopup.addEventListener('click', (evt) => {
 //   closePopupByClickOnDarkBackground(evt, imagePopup);
@@ -137,30 +150,30 @@ addNewCardButton.addEventListener('click', openCardPopup);
 // });
 
 
-newCardPopup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {
-  const data = new UserInfo({ inputPlaceName, inputPlaceLink });
-  handleNewCard(evt, data);
-});
+// newCardPopup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {
+//   const data = new UserInfo({ inputPlaceName, inputPlaceLink });
+//   handleNewCard(evt, data);
+// });
 
-newCardPopup.querySelector('.popup__close-button').addEventListener('click', () => {
-  clearInputs();
-  newCardValidation.resetForm();
-  closePopup(newCardPopup);
-});
-newCardPopup.addEventListener('click', (evt) => {
-  closePopupByClickOnDarkBackground(evt, newCardPopup);
-})
+// newCardPopup.querySelector('.popup__close-button').addEventListener('click', () => {
+//   clearInputs();
+//   newCardValidation.resetForm();
+//   closePopup(newCardPopup);
+// });
+// newCardPopup.addEventListener('click', (evt) => {
+//   closePopupByClickOnDarkBackground(evt, newCardPopup);
+// })
 
-profilePopup.querySelector('.popup__inputs').addEventListener('submit', handleProfileFormSubmit);
-profilePopup.querySelector('.popup__close-button').addEventListener('click', () => {
-  profileValidation.resetForm();
-  profileValidation.enableButtonState();
-  closePopup(profilePopup)
-});
-profilePopup.addEventListener('click', (evt) => {
-  profileValidation.resetForm();
-  profileValidation.enableButtonState();
-  closePopupByClickOnDarkBackground(evt, profilePopup);
-})
+// profilePopup.querySelector('.popup__inputs').addEventListener('submit', handleProfileFormSubmit);
+// profilePopup.querySelector('.popup__close-button').addEventListener('click', () => {
+//   profileValidation.resetForm();
+//   profileValidation.enableButtonState();
+//   closePopup(profilePopup)
+// });
+// profilePopup.addEventListener('click', (evt) => {
+//   profileValidation.resetForm();
+//   profileValidation.enableButtonState();
+//   // closePopupByClickOnDarkBackground(evt, profilePopup);
+// })
 
 render();
