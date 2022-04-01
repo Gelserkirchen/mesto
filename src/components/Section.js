@@ -7,14 +7,15 @@ export class Section { // Класс просто рисует карточки
 
     renderItems() { // нарисовать картину
         this._renderedItems = [];
-        this._data.forEach((item) => {
+        
+        this._data.reverse().forEach((item) => {
             const newItem = this._renderer(item);
-            this._renderedItems.push(newItem)
+            this._renderedItems.push(newItem);
         });
         return this._renderedItems;
     }
 
     addItem(item) { // повесить картину
-        this._container.append(item.createCard());
+        this._container.prepend(item.createCard());
     }
 }

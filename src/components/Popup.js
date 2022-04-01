@@ -1,6 +1,7 @@
 import { newCardPopup } from '../utils/constants.js';
 export class Popup {
     constructor(popupSelector) {
+        // debugger
         this._popup = document.querySelector(popupSelector);
     }
 

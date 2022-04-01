@@ -31,7 +31,14 @@ import {
 
 // PR8 
 const profileValidation = new FormValidator(validationSettings, profilePopup);
+const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
+
+const popupNewCard = new PopupWithForm('.popup_type_new-card', handleNewCard);
+// const popupNewCard = new PopupWithForm('.popup_type_new-card', (evt, data) => );
+const popupUserProfile = new PopupWithForm('.popup_type_profile', handleProfileFormSubmit);
+
 profileValidation.enableValidation();
+newCardFormValidation.enableValidation();
 
 function closePopupImage() {
   debugger
@@ -80,15 +87,12 @@ function clearInputs() {
 }
 
 // PR8 Callback add new card to cards
+// function handleNewCard(evt) {
+//   evt.preventDefault();
 function handleNewCard(evt, data) {
-  evt.preventDefault();
-
-  const section = new Section({ data, renderItems: renderCardItem }, cardsContainer);
-
-  const items = section.renderItems();
-  items.forEach((item) => {
-    section.addItem(item);
-  });
+  const card = new Section({ items: data, renderer: renderItems }, cardsContainerSelector);
+  const item = card.renderItems();
+  card.addItem(item[0]); 
 }
 
 function insertItem(item) {
@@ -109,7 +113,7 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = inputProfileName.value;
   profileJob.textContent = inputProfileProfession.value;
 
-  closePopup(profilePopup);
+  // closePopup(profilePopup);
 }
 
 export function openPopup(popup) {
@@ -117,63 +121,19 @@ export function openPopup(popup) {
   // document.addEventListener('keydown', closePopupByClickOnEsc);
 }
 
-// Close popup without saving
-function closePopup(popup) {
-  // popup.classList.remove('popup_opened');
-  // document.removeEventListener('keydown', closePopupByClickOnEsc);
-}
-
-function closePopupByClickOnEsc(evt) {
-  // if (evt.key === 'Escape') {
-  //   const currentPopup = document.querySelector('.popup_opened');
-  //   closePopup(currentPopup);
-  // }
-}
-
-// function closePopupByClickOnDarkBackground(evt, nameOfPopup) {
-//   if (evt.target === evt.currentTarget) {
-//     closePopup(nameOfPopup);
-//   }
-// }
-
 // Add listeners
 // profileEditPopupButton.addEventListener('click', renderProfilePopup);
-profileEditPopupButton.addEventListener('click', () => {openPopupNew('.popup_type_profile')});
-addNewCardButton.addEventListener('click', () => {openPopupNew('.popup_type_new-card')});
+profileEditPopupButton.addEventListener('click', () => {
+  popupUserProfile.open();
+  // openPopupNew('.popup_type_profile')
+});
 
-// imagePopup.addEventListener('click', (evt) => {
-//   closePopupByClickOnDarkBackground(evt, imagePopup);
-// })
-
-// imagePopup.querySelector('.popup__close-button').addEventListener('click', () => {
-//   closePopup(imagePopup)
-// });
+addNewCardButton.addEventListener('click', () => {
+  // debugger
+  popupNewCard.open();
+  // openPopupNew('.popup_type_new-card')
+});
 
 
-// newCardPopup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {
-//   const data = new UserInfo({ inputPlaceName, inputPlaceLink });
-//   handleNewCard(evt, data);
-// });
-
-// newCardPopup.querySelector('.popup__close-button').addEventListener('click', () => {
-//   clearInputs();
-//   newCardValidation.resetForm();
-//   closePopup(newCardPopup);
-// });
-// newCardPopup.addEventListener('click', (evt) => {
-//   closePopupByClickOnDarkBackground(evt, newCardPopup);
-// })
-
-// profilePopup.querySelector('.popup__inputs').addEventListener('submit', handleProfileFormSubmit);
-// profilePopup.querySelector('.popup__close-button').addEventListener('click', () => {
-//   profileValidation.resetForm();
-//   profileValidation.enableButtonState();
-//   closePopup(profilePopup)
-// });
-// profilePopup.addEventListener('click', (evt) => {
-//   profileValidation.resetForm();
-//   profileValidation.enableButtonState();
-//   // closePopupByClickOnDarkBackground(evt, profilePopup);
-// })
 
 render();

@@ -1,13 +1,33 @@
 import { Popup } from "./Popup.js";
+import { newCardPopupSelector } from "../utils/constants.js"
 
 export class PopupWithForm extends Popup {
 
-    constructor(popupSelector, callback) {
+    constructor(popupSelector, submitForm) {
+        // debugger
         super(popupSelector);
-        this._submit = callback
+        this._popupSelector = popupSelector;
+        this._submit = submitForm
     }
 
     _getInputValues() {
+        debugger
+        // const newItem = ;
+        // this._popup.querySelector('.popup__inputs');
+
+        this._inputList = Array.from(this._popup.querySelectorAll('.popup__input'));
+
+        // this._inputList.forEach(input => {
+        //     this._formValues[input.name] = input.value;
+        // });
+
+        // this._popup[this._inputList[0].name] = this._inputList[0].value;
+        // this._popup[this._inputList[1].name] = this._inputList[1].value;
+
+        const name = this._inputList[0].value
+        const link = this._inputList[1].value; 
+
+        return { name, link }
 
     }
 
@@ -21,45 +41,40 @@ export class PopupWithForm extends Popup {
         // закрыть попап:
         // -- если это попап с новой карточкой -> очистить поля, заблокировать кнопку
         // -- если это попап с профилем -> ничего не очищать, 
-        this.querySelector('.popup__inputs').removeEventListener('submit', this._submit);
+        // debugger
+        this._popup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {this._handleSubmitForm(evt)});
+    }
 
-        
+    _handleSubmitForm(evt) {
+        evt.preventDefault();
+        debugger
+        const data = [];
+        data.push(this._getInputValues());
+        this._submit(evt, data);
+
+        // debugger
+        this.close();
     }
 
     setEventListeners() {
-        super.setEventListeners()
+        super.setEventListeners();
+        // const data = new UserInfo({ inputPlaceName, inputPlaceLink }); // for Profile Popup
 
         // debugger
-        this._popup.querySelector('.popup__inputs').addEventListener('submit', this._submit);
-        
+        // this._popup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {
+        //     // debugger
+        //     evt.preventDefault();
 
-        //   profilePopup.querySelector('.popup__inputs').addEventListener('submit', handleProfileFormSubmit);
-        //   profilePopup.querySelector('.popup__close-button').addEventListener('click', () => {
-        //     profileValidation.resetForm();
-        //     profileValidation.enableButtonState();
-        //     closePopup(profilePopup)
-        //   });
-        //   profilePopup.addEventListener('click', (evt) => {
-        //     profileValidation.resetForm();
-        //     profileValidation.enableButtonState();
-        //     // closePopupByClickOnDarkBackground(evt, profilePopup);
-        //   })
+        //     const data = [];
+        //     data.push(this._getInputValues());
+        //     this._submit(evt, data);
 
+        //     // debugger
+        //     this.close();
+        // });
 
-        // newCardPopup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {
-        //     const data = new UserInfo({ inputPlaceName, inputPlaceLink });
-        //     handleNewCard(evt, data);
-        //   });
-          
-        //   newCardPopup.querySelector('.popup__close-button').addEventListener('click', () => {
-        //     clearInputs();
-        //     newCardValidation.resetForm();
-        //     closePopup(newCardPopup);
-        //   });
-        //   newCardPopup.addEventListener('click', (evt) => {
-        //     closePopupByClickOnDarkBackground(evt, newCardPopup);
-        //   })
-          
+        this._popup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {this._handleSubmitForm(evt)});
+
 
     }
 }
