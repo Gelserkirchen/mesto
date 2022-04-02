@@ -8,7 +8,6 @@ import { UserInfo } from '../components/UserInfo.js'
 import {
   addNewCardButton,
   cardsContainer,
-  imagePopup,
   inputPlaceLink,
   inputPlaceName,
   inputProfileName,
@@ -24,30 +23,29 @@ import {
   cardsContainerSelector
 } from '../utils/constants.js';
 
-// создаем новую карточку 
-// const newCardPopupB = new PopupWithImage(newCardPopupSelector, handleNewCard);
-// const newCardValidation = new FormValidator(validationSettings, newCardPopupB);
-// newCardValidation.enableValidation();
 
-// PR8 
+// PR8 add validation
 const profileValidation = new FormValidator(validationSettings, profilePopup);
-const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
-
-const popupNewCard = new PopupWithForm('.popup_type_new-card', handleNewCard);
-// const popupNewCard = new PopupWithForm('.popup_type_new-card', (evt, data) => );
-const popupUserProfile = new PopupWithForm('.popup_type_profile', handleProfileFormSubmit);
-
 profileValidation.enableValidation();
+const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
 newCardFormValidation.enableValidation();
 
+// PR8 create new cards
+const popupNewCard = new PopupWithForm('.popup_type_new-card', handleNewCard);
+popupNewCard.setEventListeners();
+const popupUserProfile = new PopupWithForm('.popup_type_profile', handleProfileFormSubmit);
+popupUserProfile.setEventListeners();
+const imagePopup = new PopupWithImage('.image-popup', closePopupImage); 
+imagePopup.setEventListeners();
+
+
 function closePopupImage() {
-  debugger
+  imagePopup.close();
 }
 
 // PR8 
 function handleCardClick() {
   // debugger
-  const imagePopup = new PopupWithImage('.image-popup', closePopupImage); //сюда засунуть закрывашку
   imagePopup.open(this);
 }
 
@@ -68,23 +66,10 @@ function render() {
 
 }
 
-// function openCardPopup() // { переименовал в -> function openPopup() { 
-//   const popup =  new PopupWithForm()
-//   openPopup(newCardPopup); 
+// function clearInputs() {
+//   // inputPlaceName.value = '';
+//   // inputPlaceLink.value = '';
 // }
-
-// PR8 
-function openPopupNew(popupSelector) { // instead of openCardPopup()
-  // debugger
-  const popup =  new PopupWithForm(popupSelector, handleProfileFormSubmit);
-  popup.setEventListeners(); // может быть сделать приватным
-  popup.open();
-}
-
-function clearInputs() {
-  // inputPlaceName.value = '';
-  // inputPlaceLink.value = '';
-}
 
 // PR8 Callback add new card to cards
 // function handleNewCard(evt) {
@@ -92,33 +77,17 @@ function clearInputs() {
 function handleNewCard(evt, data) {
   const card = new Section({ items: data, renderer: renderItems }, cardsContainerSelector);
   const item = card.renderItems();
-  card.addItem(item[0]); 
+  card.addItem(item[0]);  
 }
 
-function insertItem(item) {
-  // cardsContainer.prepend(item.createCard());
-}
-
-function renderProfilePopup() {
-  inputProfileName.value = profileName.textContent;
-  inputProfileProfession.value = profileJob.textContent;
-  openPopup(profilePopup);
-}
 
 // Save result of popup to profile
-function handleProfileFormSubmit(evt) {
-  debugger
+function handleProfileFormSubmit(evt, data) {
+  // debugger
   evt.preventDefault();
 
-  profileName.textContent = inputProfileName.value;
-  profileJob.textContent = inputProfileProfession.value;
-
-  // closePopup(profilePopup);
-}
-
-export function openPopup(popup) {
-  // popup.classList.add('popup_opened');
-  // document.addEventListener('keydown', closePopupByClickOnEsc);
+  profileName.textContent = data[0].name;
+  profileJob.textContent = data[0].profession;
 }
 
 // Add listeners

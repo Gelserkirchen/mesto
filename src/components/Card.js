@@ -1,4 +1,4 @@
-import { openPopup} from '../pages/index.js'
+// import { openPopup} from '../pages/index.js'
 import {image, imagePopupDescription} from '../utils/constants.js';
 import {PopupWithImage} from './PopupWIthImage.js';
 // import {image, imagePopup, imagePopupDescription} from '../utils/constants';

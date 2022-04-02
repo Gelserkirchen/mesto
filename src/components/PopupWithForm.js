@@ -1,40 +1,37 @@
 import { Popup } from "./Popup.js";
-import { newCardPopupSelector } from "../utils/constants.js"
+import { newCardPopupSelector, profilePopupSelector, inputProfileName, inputProfileProfession, profileName, profileJob } from "../utils/constants.js"
 
 export class PopupWithForm extends Popup {
 
     constructor(popupSelector, submitForm) {
-        // debugger
         super(popupSelector);
         this._popupSelector = popupSelector;
-        this._submit = submitForm
+        this._submit = submitForm;
+
     }
 
     _getInputValues() {
-        debugger
-        // const newItem = ;
-        // this._popup.querySelector('.popup__inputs');
-
         this._inputList = Array.from(this._popup.querySelectorAll('.popup__input'));
 
-        // this._inputList.forEach(input => {
-        //     this._formValues[input.name] = input.value;
-        // });
+        const firstInput = this._inputList[0].value
+        const secondInput = this._inputList[1].value;
 
-        // this._popup[this._inputList[0].name] = this._inputList[0].value;
-        // this._popup[this._inputList[1].name] = this._inputList[1].value;
-
-        const name = this._inputList[0].value
-        const link = this._inputList[1].value; 
-
-        return { name, link }
-
+        if (this._popupSelector === newCardPopupSelector) { 
+            return { name: firstInput, link: secondInput} } 
+            else { return { name: firstInput, profession: secondInput } 
+        }
     }
 
-    open() {
-       super.open();
-    //    this.setEventListeners(); 
-    }    
+    open() { // открыть попап
+        super.open();
+
+        if (this._popupSelector === profilePopupSelector) { 
+            debugger
+            inputProfileName.value = profileName.textContent;
+            inputProfileProfession.value = profileJob.textContent;
+        }
+
+    }
 
     close() {
         super.close();
@@ -42,39 +39,20 @@ export class PopupWithForm extends Popup {
         // -- если это попап с новой карточкой -> очистить поля, заблокировать кнопку
         // -- если это попап с профилем -> ничего не очищать, 
         // debugger
-        this._popup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {this._handleSubmitForm(evt)});
+        // this._popup.querySelector('.popup__inputs').removeEventListener('submit', (evt) => { this._handleSubmitForm(evt) });
     }
 
     _handleSubmitForm(evt) {
         evt.preventDefault();
-        debugger
         const data = [];
         data.push(this._getInputValues());
         this._submit(evt, data);
-
-        // debugger
         this.close();
     }
 
     setEventListeners() {
         super.setEventListeners();
-        // const data = new UserInfo({ inputPlaceName, inputPlaceLink }); // for Profile Popup
-
-        // debugger
-        // this._popup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {
-        //     // debugger
-        //     evt.preventDefault();
-
-        //     const data = [];
-        //     data.push(this._getInputValues());
-        //     this._submit(evt, data);
-
-        //     // debugger
-        //     this.close();
-        // });
-
-        this._popup.querySelector('.popup__inputs').addEventListener('submit', (evt) => {this._handleSubmitForm(evt)});
-
-
+        this._popup.querySelector('.popup__inputs').addEventListener('submit', (evt) => { this._handleSubmitForm(evt) });
+        this._popup.querySelector('.popup__close-button').addEventListener('click', this.close.bind(this));
     }
 }
