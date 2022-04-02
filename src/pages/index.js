@@ -1,53 +1,43 @@
-import { FormValidator } from '../components/FormValidator.js'
-import { Card } from '../components/Card.js'
-import { Section } from '../components/Section.js'
-import { PopupWithForm } from '../components/PopupWithForm.js'
-import { PopupWithImage } from '../components/PopupWithImage.js'
-import { UserInfo } from '../components/UserInfo.js'
+import {Card} from '../components/Card.js'
+import {Section} from '../components/Section.js'
+import {PopupWithForm} from '../components/PopupWithForm.js'
+import {PopupWithImage} from '../components/PopupWithImage.js'
 
 import {
   addNewCardButton,
-  newCardPopup,
-  profileEditPopupButton,
-  profileJob,
-  profileName,
-  profilePopup,
-  validationSettings,
+  cardsContainerSelector,
+  imagePopupSelector,
   initialCards,
-  cardsContainerSelector
+  newCardFormValidation,
+  newCardPopupSelector,
+  profileEditPopupButton,
+  profilePopupSelector,
+  profileValidation,
+  usersInfo
 } from '../utils/constants.js';
 
-
-// PR8 add validation
-export const profileValidation = new FormValidator(validationSettings, profilePopup);
 profileValidation.enableValidation();
-export const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
 newCardFormValidation.enableValidation();
 
 // PR8 create new cards
-const popupNewCard = new PopupWithForm('.popup_type_new-card', handleNewCard);
+const popupNewCard = new PopupWithForm(newCardPopupSelector, handleNewCard);
 popupNewCard.setEventListeners();
 
-const popupUserProfile = new PopupWithForm('.popup_type_profile', handleProfileFormSubmit);
+const popupUserProfile = new PopupWithForm(profilePopupSelector, handleProfileFormSubmit);
 popupUserProfile.setEventListeners();
 
-const imagePopup = new PopupWithImage('.image-popup', closePopupImage); 
+const imagePopup = new PopupWithImage(imagePopupSelector, closePopupImage);
 imagePopup.setEventListeners();
-
-export const usersInfo = new UserInfo({name: profileName.textContent, profession: profileJob.textContent});
-
 
 function closePopupImage() {
   imagePopup.close();
 }
 
-// PR8 
 function handleCardClick() {
-  // debugger
   imagePopup.open(this);
 }
 
-// PR8 
+// PR8
 function renderItems(data) { 
   const item = new Card(data, '.card__template', handleCardClick);  
   return item;

@@ -1,9 +1,13 @@
+import {FormValidator} from '../components/FormValidator';
+import {UserInfo} from '../components/UserInfo';
+
 export const imagePopup = document.querySelector('.image-popup');
+export const imagePopupSelector = '.image-popup';
 export const image = imagePopup.querySelector('.image-popup__picture');
 export const imagePopupDescription = imagePopup.querySelector('.image-popup__description');
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__profession');
-export const cardsContainer = document.querySelector('.cards');
+// export const cardsContainer = document.querySelector('.cards');
 export const cardsContainerSelector = '.cards';
 export const profileEditPopupButton = document.querySelector('.profile__edit-button');
 export const profilePopupSelector = '.popup_type_profile';
@@ -25,6 +29,10 @@ export const validationSettings = {
   inputErrorClass: 'popup__input-error',
   errorClass: 'popup__input-error_active'
 };
+
+export const profileValidation = new FormValidator(validationSettings, profilePopup);
+export const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
+export const usersInfo = new UserInfo({name: profileName.textContent, profession: profileJob.textContent});
 
 export const initialCards = [
   {

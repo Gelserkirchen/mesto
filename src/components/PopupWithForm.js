@@ -1,6 +1,15 @@
 import { Popup } from "./Popup.js";
-import { newCardPopupSelector, profilePopupSelector, inputProfileName, inputProfileProfession, profileName, profileJob, inputPlaceName, inputPlaceLink } from "../utils/constants.js"
-import { usersInfo, profileValidation, newCardFormValidation} from "../pages/index.js"
+import {
+  newCardPopupSelector,
+  profilePopupSelector,
+  inputProfileName,
+  inputProfileProfession,
+  profileName,
+  profileJob,
+  inputPlaceName,
+  inputPlaceLink,
+  profileValidation, newCardFormValidation, usersInfo
+} from "../utils/constants.js"
 
 export class PopupWithForm extends Popup {
 
