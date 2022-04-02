@@ -1,11 +1,7 @@
-// import { openPopup} from '../pages/index.js'
-import {image, imagePopupDescription} from '../utils/constants.js';
-import {PopupWithImage} from './PopupWIthImage.js';
-// import {image, imagePopup, imagePopupDescription} from '../utils/constants';
 export class Card {
     constructor(data, templateSelector, submitFormHandler) {
         this._data = data; // name and link
-        this._templateSelector = templateSelector; // .card_template
+        this._templateSelector = templateSelector;
         this._submitFormHandler = submitFormHandler;
     }
 
@@ -16,13 +12,6 @@ export class Card {
 
     _handleCardDelete() {
         this.closest('.card').remove();
-    }
-
-    // open image to full screen
-    _handleOpenCardImage() {
-        // debugger
-        // const imagePopup = new PopupWithImage('.image-popup', this._submitFormHandler);
-        // imagePopup.open(this._data);
     }
 
     createCard() {

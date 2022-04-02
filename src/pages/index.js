@@ -1,7 +1,7 @@
-import {Card} from '../components/Card.js'
-import {Section} from '../components/Section.js'
-import {PopupWithForm} from '../components/PopupWithForm.js'
-import {PopupWithImage} from '../components/PopupWithImage.js'
+import { Card } from '../components/Card.js'
+import { Section } from '../components/Section.js'
+import { PopupWithForm } from '../components/PopupWithForm.js'
+import { PopupWithImage } from '../components/PopupWithImage.js'
 
 import {
   addNewCardButton,
@@ -19,7 +19,6 @@ import {
 profileValidation.enableValidation();
 newCardFormValidation.enableValidation();
 
-// PR8 create new cards
 const popupNewCard = new PopupWithForm(newCardPopupSelector, handleNewCard);
 popupNewCard.setEventListeners();
 
@@ -37,13 +36,11 @@ function handleCardClick() {
   imagePopup.open(this);
 }
 
-// PR8
-function renderItems(data) { 
-  const item = new Card(data, '.card__template', handleCardClick);  
+function renderItems(data) {
+  const item = new Card(data, '.card__template', handleCardClick);
   return item;
 }
 
-// PR8 
 function render() {
   const cards = new Section({ items: initialCards, renderer: renderItems }, cardsContainerSelector);
   const items = cards.renderItems();
@@ -56,7 +53,7 @@ function render() {
 function handleNewCard(evt, data) {
   const card = new Section({ items: data, renderer: renderItems }, cardsContainerSelector);
   const item = card.renderItems();
-  card.addItem(item[0]);  
+  card.addItem(item[0]);
   newCardFormValidation.resetForm();
   newCardFormValidation.disableButtonState();
 }

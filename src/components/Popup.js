@@ -1,16 +1,14 @@
 import { newCardPopup } from '../utils/constants.js';
 export class Popup {
     constructor(popupSelector) {
-        // debugger
         this._popup = document.querySelector(popupSelector);
     }
 
-    open() { // открыть попап
+    open() {
         this._popup.classList.add('popup_opened');
-        // this.setEventListeners();
     }
 
-    close() { // закрыть попап
+    close() {
         this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscCLose);
         this._popup.removeEventListener('click', this._handleClosePopupByClickOnDarkBackground.bind(this));
@@ -22,13 +20,13 @@ export class Popup {
         }
     }
 
-    _handleEscCLose(evt) { // логика закрытия попапа через Esc
+    _handleEscCLose(evt) {
         if (evt.key === 'Escape') {
             this.close();
         }
     }
 
-    setEventListeners() { // добавляет слушатель клика иконке закрытия попапа
+    setEventListeners() {
         document.addEventListener('keydown', this._handleEscCLose.bind(this));
         this._popup.addEventListener('click', this._handleClosePopupByClickOnDarkBackground.bind(this));
         this._popup.querySelector('.popup__close-button').addEventListener('click', this.close.bind(this));

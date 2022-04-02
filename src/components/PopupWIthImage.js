@@ -1,5 +1,5 @@
-import {Popup} from './Popup.js';
-import {image, imagePopupDescription, imagePopup} from '../utils/constants.js';
+import { Popup } from './Popup.js';
+import { image, imagePopupDescription, imagePopup } from '../utils/constants.js';
 
 export class PopupWithImage extends Popup {
     constructor(popupSelector, submitFormHandler) {
@@ -8,7 +8,7 @@ export class PopupWithImage extends Popup {
     }
 
     open(data) {
-        super.open(); 
+        super.open();
         image.src = data.src;
         image.alt = data.alt;
         imagePopupDescription.textContent = data.alt;

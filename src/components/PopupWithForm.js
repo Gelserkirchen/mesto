@@ -1,23 +1,21 @@
 import { Popup } from "./Popup.js";
 import {
-  newCardPopupSelector,
-  profilePopupSelector,
-  inputProfileName,
-  inputProfileProfession,
-  profileName,
-  profileJob,
-  inputPlaceName,
-  inputPlaceLink,
-  profileValidation, newCardFormValidation, usersInfo
+    newCardPopupSelector,
+    profilePopupSelector,
+    inputProfileName,
+    inputProfileProfession,
+    profileName,
+    profileJob,
+    inputPlaceName,
+    inputPlaceLink,
+    profileValidation, newCardFormValidation, usersInfo
 } from "../utils/constants.js"
 
 export class PopupWithForm extends Popup {
-
     constructor(popupSelector, submitForm) {
         super(popupSelector);
         this._popupSelector = popupSelector;
         this._submit = submitForm;
-
     }
 
     _getInputValues() {
@@ -25,11 +23,11 @@ export class PopupWithForm extends Popup {
             return { name: inputPlaceName.value, link: inputPlaceLink.value }
         }
         else {
-            return { name: inputProfileName.value, profession: inputProfileProfession.value};
+            return { name: inputProfileName.value, profession: inputProfileProfession.value };
         }
     }
 
-    open() { // открыть попап
+    open() {
         super.open();
 
         if (this._popupSelector === profilePopupSelector) {
