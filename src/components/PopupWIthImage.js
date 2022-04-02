@@ -14,9 +14,4 @@ export class PopupWithImage extends Popup {
         imagePopupDescription.textContent = data.alt;
         this.setEventListeners();
     }
-
-    setEventListeners() {
-        super.setEventListeners();
-        imagePopup.querySelector('.popup__close-button').addEventListener('click', this.close.bind(this));
-    }
 }

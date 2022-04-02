@@ -31,5 +31,6 @@ export class Popup {
     setEventListeners() { // добавляет слушатель клика иконке закрытия попапа
         document.addEventListener('keydown', this._handleEscCLose.bind(this));
         this._popup.addEventListener('click', this._handleClosePopupByClickOnDarkBackground.bind(this));
+        this._popup.querySelector('.popup__close-button').addEventListener('click', this.close.bind(this));
     }
 }

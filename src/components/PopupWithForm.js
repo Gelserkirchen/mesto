@@ -1,5 +1,6 @@
 import { Popup } from "./Popup.js";
-import { newCardPopupSelector, profilePopupSelector, inputProfileName, inputProfileProfession, profileName, profileJob } from "../utils/constants.js"
+import { newCardPopupSelector, profilePopupSelector, inputProfileName, inputProfileProfession, profileName, profileJob, inputPlaceName, inputPlaceLink } from "../utils/constants.js"
+import { usersInfo, profileValidation, newCardFormValidation} from "../pages/index.js"
 
 export class PopupWithForm extends Popup {
 
@@ -11,35 +12,32 @@ export class PopupWithForm extends Popup {
     }
 
     _getInputValues() {
-        this._inputList = Array.from(this._popup.querySelectorAll('.popup__input'));
-
-        const firstInput = this._inputList[0].value
-        const secondInput = this._inputList[1].value;
-
-        if (this._popupSelector === newCardPopupSelector) { 
-            return { name: firstInput, link: secondInput} } 
-            else { return { name: firstInput, profession: secondInput } 
+        if (this._popupSelector === newCardPopupSelector) {
+            return { name: inputPlaceName.value, link: inputPlaceLink.value }
+        }
+        else {
+            return { name: inputProfileName.value, profession: inputProfileProfession.value};
         }
     }
 
     open() { // открыть попап
         super.open();
 
-        if (this._popupSelector === profilePopupSelector) { 
-            debugger
-            inputProfileName.value = profileName.textContent;
-            inputProfileProfession.value = profileJob.textContent;
+        if (this._popupSelector === profilePopupSelector) {
+            inputProfileName.value = usersInfo.getUserInfo().name;
+            inputProfileProfession.value = usersInfo.getUserInfo().profession;
         }
 
     }
 
     close() {
         super.close();
-        // закрыть попап:
-        // -- если это попап с новой карточкой -> очистить поля, заблокировать кнопку
-        // -- если это попап с профилем -> ничего не очищать, 
-        // debugger
-        // this._popup.querySelector('.popup__inputs').removeEventListener('submit', (evt) => { this._handleSubmitForm(evt) });
+
+        if (this._popupSelector === newCardPopupSelector) {
+            newCardFormValidation.resetForm();
+            inputPlaceName.value = '';
+            inputPlaceLink.value = '';
+        }
     }
 
     _handleSubmitForm(evt) {
@@ -53,6 +51,5 @@ export class PopupWithForm extends Popup {
     setEventListeners() {
         super.setEventListeners();
         this._popup.querySelector('.popup__inputs').addEventListener('submit', (evt) => { this._handleSubmitForm(evt) });
-        this._popup.querySelector('.popup__close-button').addEventListener('click', this.close.bind(this));
     }
 }
