@@ -1,6 +1,6 @@
 export class Card {
     constructor(data, templateSelector, submitFormHandler) {
-        this._data = data; // name and link
+        this._data = data;
         this._templateSelector = templateSelector;
         this._submitFormHandler = submitFormHandler;
     }
