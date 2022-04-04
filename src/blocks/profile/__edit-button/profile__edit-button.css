@@ -8,7 +8,7 @@
     border: none;
     background-color: unset;
     cursor: pointer;
-    background-image: url("../../../../images/__edit_button.svg");
+    background-image: url("../../../../src/images/__edit_button.svg");
     background-size: cover;
     position: absolute;
     top: 36%;

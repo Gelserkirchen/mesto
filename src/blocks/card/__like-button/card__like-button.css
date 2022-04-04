@@ -7,7 +7,7 @@
     border: none;
     background-color: unset;
     cursor: pointer;
-    background-image: url("../../../../images/__like.svg");
+    background-image: url("../../../../src/images/__like.svg");
     background-size: cover;
     min-width: 22px;
     min-height: 19px;

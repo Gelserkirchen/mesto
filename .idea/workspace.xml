@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2974c882-c65d-49fd-9914-a089b2434daf" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="23kc7dMe0ADW8akwn2hUcK2oJXa" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/pages" />
+      <recent name="$PROJECT_DIR$/scripts" />
+      <recent name="$PROJECT_DIR$/blocks/popup/_opened" />
+      <recent name="$PROJECT_DIR$/vendor" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/utils/constants.js" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2974c882-c65d-49fd-9914-a089b2434daf" name="Default Changelist" comment="" />
+      <created>1642281358486</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642281358486</updated>
+      <workItem from="1642281360507" duration="33657000" />
+      <workItem from="1642494393340" duration="1232000" />
+      <workItem from="1642872977061" duration="245000" />
+      <workItem from="1642876590470" duration="965000" />
+      <workItem from="1643038083854" duration="8653000" />
+      <workItem from="1643218665817" duration="2427000" />
+      <workItem from="1643315266150" duration="815000" />
+      <workItem from="1643351927125" duration="278000" />
+      <workItem from="1643465375859" duration="8223000" />
+      <workItem from="1643606790273" duration="24920000" />
+      <workItem from="1643697821787" duration="15000" />
+      <workItem from="1643736707813" duration="15385000" />
+      <workItem from="1643874039140" duration="14199000" />
+      <workItem from="1644407892212" duration="1000" />
+      <workItem from="1644560838169" duration="15258000" />
+      <workItem from="1644824777909" duration="7359000" />
+      <workItem from="1645006823676" duration="247000" />
+      <workItem from="1648284343058" duration="41000" />
+      <workItem from="1648284393856" duration="609000" />
+      <workItem from="1648285108788" duration="92000" />
+      <workItem from="1648286889368" duration="256000" />
+      <workItem from="1648288803320" duration="9203000" />
+      <workItem from="1648884714367" duration="2111000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

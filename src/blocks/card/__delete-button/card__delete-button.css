@@ -1,5 +1,5 @@
 .card__delete-button {
-    background-image: url("../../../../images/__trash.svg");
+    background-image: url("../../../../src/images/__trash.svg");
     position: absolute;
     top: 20px;
     right: 20px;
