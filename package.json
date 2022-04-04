@@ -5,7 +5,7 @@
   "main": "/pages/index.js",
   "scripts": {
     "build": "rm -rf dist && webpack  --mode production  ./src/pages/index.js",
-    "dev": "rm -rf dist && webpack serve --mode development ./src/pages/index.js"
+    "dev": "webpack serve --mode development ./src/pages/index.js"
   },
   "repository": {
     "type": "git",
