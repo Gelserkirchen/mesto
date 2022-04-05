@@ -7,6 +7,7 @@ export class Section {
 
     renderItems() {
         this._renderedItems = [];
+        debugger
 
         this._data.reverse().forEach((item) => {
             const newItem = this._renderer(item);

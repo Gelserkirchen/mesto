@@ -15,7 +15,7 @@ export class Card {
     }
 
     createCard() {
-        debugger
+        // debugger
         const cardTemplate = document.querySelector(this._templateSelector).content;
         this._cardElement = cardTemplate.cloneNode(true);
         this._cardImage = this._cardElement.querySelector('.card__image');
@@ -26,8 +26,6 @@ export class Card {
         this._cardElement.querySelector('.card__text').textContent = this._data.name;
         this._likeButton = this._cardElement.querySelector('.card__like-button');
         this._deleteButton = this._cardElement.querySelector('.card__delete-button');
-
-
 
         this._setEventListeners();
 

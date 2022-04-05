@@ -20,7 +20,9 @@ import {
   profileName,
   profileJob,
   image,
-  imagePopupDescription
+  imagePopupDescription,
+  inputProfileName,
+  inputProfileProfession
 } from '../utils/constants.js';
 
 // newCardPopupSelector,
@@ -32,7 +34,6 @@ import {
 // inputProfileName,
 
 // usersInfo
-
 
 const profileValidation = new FormValidator(validationSettings, profilePopup);
 const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
@@ -48,21 +49,17 @@ popupNewCard.setEventListeners();
 const popupUserProfile = new PopupWithForm(profilePopupSelector, handleProfileFormSubmit);
 popupUserProfile.setEventListeners();
 
-const imagePopup = new PopupWithImage(imagePopupSelector, { image, imagePopupDescription });
+const imagePopup = new PopupWithImage(imagePopupSelector, { imagePopup: image, imagePopupDescription: imagePopupDescription });
 imagePopup.setEventListeners();
 
 function closePopupImage() {
   imagePopup.close();
 }
 
-function handleCardClick() {
-  imagePopup.open(this);
+function handleCardClick(evt) {
+  imagePopup.open(evt.target);
 }
 
-function renderItems(data) {
-  const item = new Card(data, '.card__template', handleCardClick);
-  return item;
-}
 
 function render() {
   const cards = new Section({ items: initialCards, renderer: renderItems }, cardsContainerSelector);
@@ -76,9 +73,15 @@ function render() {
 function handleNewCard(evt, data) {
   const card = new Section({ items: data, renderer: renderItems }, cardsContainerSelector);
   const item = card.renderItems();
+  debugger
   card.addItem(item[0]);
   newCardFormValidation.removeErrors();
   newCardFormValidation.disableButtonState();
+}
+
+function renderItems(data) {
+  const item = new Card(data, '.card__template', handleCardClick);
+  return item;
 }
 
 function resetPopupInputs() {

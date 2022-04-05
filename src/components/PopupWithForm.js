@@ -14,10 +14,11 @@ export class PopupWithForm extends Popup {
         super(popupSelector);
         this._submit = submitForm;
         this._popupInputs = this._popup.querySelector('.popup__inputs');
+        this._inputList = this._popup.querySelectorAll('.form__input');
     }
 
     _getInputValues() {
-        this._inputList = this._popup.querySelectorAll('.form__input');
+        debugger
         this._formValues = {};
         this._inputList.forEach(input => {
             this._formValues[input.name] = input.value;
@@ -27,9 +28,7 @@ export class PopupWithForm extends Popup {
 
     close() {
         super.close();
-
         // this._validator.removeErrors();
-
         if (this._popupSelector === newCardPopupSelector) {
             inputPlaceName.value = '';
             inputPlaceLink.value = '';
