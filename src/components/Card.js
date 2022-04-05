@@ -1,37 +1,44 @@
 export class Card {
-    constructor(data, templateSelector, submitFormHandler) {
+    constructor(data, templateSelector, handleImageClick) {
         this._data = data;
         this._templateSelector = templateSelector;
-        this._submitFormHandler = submitFormHandler;
+        this._submitFormHandler = handleImageClick;
     }
 
-    _handleLikeButton() {
-        this.classList.toggle('card__like-button_active');
-        this.classList.toggle('card__like-button');
+    _handleLikeButton(evt) {
+        evt.target.classList.toggle('card__like-button_active');
+        evt.target.classList.toggle('card__like-button');
     }
 
-    _handleCardDelete() {
-        this.closest('.card').remove();
+    _handleCardDelete(evt) {
+        evt.closest('.card').remove();
     }
 
     createCard() {
+        debugger
         const cardTemplate = document.querySelector(this._templateSelector).content;
-        const cardElement = cardTemplate.cloneNode(true);
-        const cardImage = cardElement.querySelector('.card__image');
+        this._cardElement = cardTemplate.cloneNode(true);
+        this._cardImage = this._cardElement.querySelector('.card__image');
 
-        cardImage.src = this._data.link;
-        cardImage.alt = this._data.name;
+        this._cardImage.src = this._data.link;
+        this._cardImage.alt = this._data.name;
 
-        cardElement.querySelector('.card__text').textContent = this._data.name;
-        const likeButton = cardElement.querySelector('.card__like-button');
-        const deleteButton = cardElement.querySelector('.card__delete-button');
+        this._cardElement.querySelector('.card__text').textContent = this._data.name;
+        this._likeButton = this._cardElement.querySelector('.card__like-button');
+        this._deleteButton = this._cardElement.querySelector('.card__delete-button');
 
+
+
+        this._setEventListeners();
+
+        return this._cardElement
+    }
+
+    _setEventListeners() {
         // Add EvtListener to card
-        likeButton.addEventListener('click', this._handleLikeButton);
-        deleteButton.addEventListener('click', this._handleCardDelete);
-        cardImage.addEventListener('click', this._submitFormHandler);
-
-        return cardElement
+        this._likeButton.addEventListener('click', this._handleLikeButton);
+        this._deleteButton.addEventListener('click', this._handleCardDelete);
+        this._cardImage.addEventListener('click', this._submitFormHandler);
     }
 }
 

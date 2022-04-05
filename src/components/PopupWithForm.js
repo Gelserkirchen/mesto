@@ -4,44 +4,33 @@ import {
     profilePopupSelector,
     inputProfileName,
     inputProfileProfession,
-    profileName,
-    profileJob,
     inputPlaceName,
     inputPlaceLink,
-    profileValidation, newCardFormValidation, usersInfo
+    usersInfo
 } from "../utils/constants.js"
 
 export class PopupWithForm extends Popup {
     constructor(popupSelector, submitForm) {
         super(popupSelector);
-        this._popupSelector = popupSelector;
         this._submit = submitForm;
+        this._popupInputs = this._popup.querySelector('.popup__inputs');
     }
 
     _getInputValues() {
-        if (this._popupSelector === newCardPopupSelector) {
-            return { name: inputPlaceName.value, link: inputPlaceLink.value }
-        }
-        else {
-            return { name: inputProfileName.value, profession: inputProfileProfession.value };
-        }
-    }
-
-    open() {
-        super.open();
-
-        if (this._popupSelector === profilePopupSelector) {
-            inputProfileName.value = usersInfo.getUserInfo().name;
-            inputProfileProfession.value = usersInfo.getUserInfo().profession;
-        }
-
+        this._inputList = this._popup.querySelectorAll('.form__input');
+        this._formValues = {};
+        this._inputList.forEach(input => {
+            this._formValues[input.name] = input.value;
+        });
+        return this._formValues;
     }
 
     close() {
         super.close();
 
+        // this._validator.removeErrors();
+
         if (this._popupSelector === newCardPopupSelector) {
-            newCardFormValidation.resetForm();
             inputPlaceName.value = '';
             inputPlaceLink.value = '';
         }
@@ -49,14 +38,12 @@ export class PopupWithForm extends Popup {
 
     _handleSubmitForm(evt) {
         evt.preventDefault();
-        const data = [];
-        data.push(this._getInputValues());
-        this._submit(evt, data);
+        this._submit(evt, this._getInputValues());
         this.close();
     }
 
     setEventListeners() {
         super.setEventListeners();
-        this._popup.querySelector('.popup__inputs').addEventListener('submit', (evt) => { this._handleSubmitForm(evt) });
+        this._popupInputs.addEventListener('submit', (evt) => { this._handleSubmitForm(evt) });
     }
 }

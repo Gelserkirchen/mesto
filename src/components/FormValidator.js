@@ -2,6 +2,7 @@ export class FormValidator {
     constructor(settings, form) {
         this._settings = settings;
         this._form = form;
+        this._buttonElement = this._form.querySelector(this._settings.submitButtonSelector);
     }
 
     _showInputError = (inputElement) => {
@@ -33,13 +34,11 @@ export class FormValidator {
     };
 
     disableButtonState() {
-        this._buttonElement = this._form.querySelector(this._settings.submitButtonSelector);
         this._buttonElement.disabled = true;
         this._buttonElement.classList.add(this._settings.inactiveButtonClass);
     }
 
     enableButtonState() {
-        this._buttonElement = this._form.querySelector(this._settings.submitButtonSelector);
         this._buttonElement.disabled = false;
         this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
     }
@@ -60,7 +59,7 @@ export class FormValidator {
         });
     };
 
-    resetForm() {
+    removeErrors() {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement)
         })

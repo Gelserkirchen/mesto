@@ -28,10 +28,6 @@ export const validationSettings = {
   errorClass: 'popup__input-error_active'
 };
 
-export const profileValidation = new FormValidator(validationSettings, profilePopup);
-export const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
-export const usersInfo = new UserInfo({ name: profileName.textContent, profession: profileJob.textContent });
-
 export const initialCards = [
   {
     name: 'Архыз',
