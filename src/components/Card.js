@@ -2,7 +2,7 @@ export class Card {
     constructor(data, templateSelector, handleImageClick) {
         this._data = data;
         this._templateSelector = templateSelector;
-        this._submitFormHandler = handleImageClick;
+        this._handleImageClick = handleImageClick;
     }
 
     _handleLikeButton(evt) {
@@ -35,7 +35,7 @@ export class Card {
         // Add EvtListener to card
         this._likeButton.addEventListener('click', this._handleLikeButton);
         this._deleteButton.addEventListener('click', this._handleCardDelete);
-        this._cardImage.addEventListener('click', this._submitFormHandler);
+        this._cardImage.addEventListener('click', this._handleImageClick);
     }
 }
 

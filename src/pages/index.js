@@ -52,8 +52,6 @@ function render() {
 
 function handleNewCard(evt, data) {
   cards.addItem(data);
-  newCardFormValidation.removeErrors();
-  newCardFormValidation.disableButtonState();
 }
 
 function renderItems(data) {
@@ -68,12 +66,14 @@ function handleProfileFormSubmit(evt, data) {
 
 // Add listeners
 profileEditPopupButton.addEventListener('click', () => {
-  inputProfileName.value = usersInfo.getUserInfo().name;
-  inputProfileProfession.value = usersInfo.getUserInfo().profession;
+  const { name, profession } = usersInfo.getUserInfo()
+  inputProfileName.value = name;
+  inputProfileProfession.value = profession;
   popupUserProfile.open();
 });
 
 addNewCardButton.addEventListener('click', () => {
+  newCardFormValidation.disableButtonState();
   newCardFormValidation.removeErrors(); //
   popupNewCard.open();
 });
