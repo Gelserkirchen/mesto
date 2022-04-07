@@ -6,17 +6,13 @@ export class Section {
     }
 
     renderItems() {
-        this._renderedItems = [];
-        debugger
-
-        this._data.reverse().forEach((item) => {
-            const newItem = this._renderer(item);
-            this._renderedItems.push(newItem);
+        this._data.forEach((item) => {
+            this.addItem(item)
         });
-        return this._renderedItems;
     }
 
     addItem(item) {
-        this._container.prepend(item.createCard());
+        const card = this._renderer(item);
+        this._container.prepend(card);
     }
 }

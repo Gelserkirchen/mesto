@@ -1,11 +1,10 @@
-import { FormValidator } from '../components/FormValidator.js';
-import { UserInfo } from '../components/UserInfo.js';
-
 export const imagePopup = document.querySelector('.image-popup');
 export const imagePopupSelector = '.image-popup';
 export const image = imagePopup.querySelector('.image-popup__picture');
 export const imagePopupDescription = imagePopup.querySelector('.image-popup__description');
 export const profileName = document.querySelector('.profile__name');
+export const profileNameSelector = '.profile__name';
+export const profileJobSelector = '.profile__profession';
 export const profileJob = document.querySelector('.profile__profession');
 export const cardsContainerSelector = '.cards';
 export const profileEditPopupButton = document.querySelector('.profile__edit-button');

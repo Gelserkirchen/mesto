@@ -17,7 +17,8 @@
 
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" src="<%=require('../src/images/profile_photo.jpeg')%>" alt="Аватар пользователя">
+                <img class="profile__avatar" src="<%=require('../src/images/profile_photo.jpeg')%>"
+                    alt="Аватар пользователя">
                 <div class="profile__info">
                     <div class="profile__name-section">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -52,14 +53,14 @@
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <form class="popup__inputs" novalidate>
                     <label for="name-input" class="popup__label">
-                        <input id="name-input" class="popup__input popup__input_type_name" type="text" placeholder="Имя"
-                            minlength="2" maxlength="40" required>
+                        <input id="name-input" name="name" class="popup__input popup__input_type_name" type="text"
+                            placeholder="Имя" minlength="2" maxlength="40" required>
                         <span id="error-of-input" class="popup__input-error name-input-error">Текст ошибки</span>
                     </label>
 
                     <label for="profession-input" class="popup__label">
-                        <input id="profession-input" class="popup__input popup__input_type_profile" type="text"
-                            placeholder="Профессия" minlength="2" maxlength="200" required>
+                        <input id="profession-input" name="profession" class="popup__input popup__input_type_profile"
+                            type="text" placeholder="Профессия" minlength="2" maxlength="200" required>
                         <span class="popup__input-error profession-input-error ">Текст ошибки</span>
                     </label>
 
@@ -75,13 +76,13 @@
                 <h3 class="popup__title">Новое место</h3>
                 <form class="popup__inputs" id="popup__place-form" novalidate>
                     <label for="place-input" class="popup__label">
-                        <input id="place-input" class="popup__input popup__input_type_place" type="text"
+                        <input id="place-input" name="name" class="popup__input popup__input_type_place" type="text"
                             placeholder="Название" minlength="2" maxlength="40" required>
                         <span class="popup__input-error place-input-error">Текст ошибки</span>
                     </label>
 
                     <label for="link-input" class="popup__label">
-                        <input id="link-input" class="popup__input popup__input_type_link" type="url"
+                        <input id="link-input" name="link" class="popup__input popup__input_type_link" type="url"
                             placeholder="Ссылка на картинку" required minlength="2">
                         <span class="popup__input-error link-input-error">Текст ошибки</span>
                     </label>

@@ -11,11 +11,10 @@ export class Card {
     }
 
     _handleCardDelete(evt) {
-        evt.closest('.card').remove();
+        evt.target.closest('.card').remove();
     }
 
     createCard() {
-        // debugger
         const cardTemplate = document.querySelector(this._templateSelector).content;
         this._cardElement = cardTemplate.cloneNode(true);
         this._cardImage = this._cardElement.querySelector('.card__image');
