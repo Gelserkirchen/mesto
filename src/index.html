@@ -43,6 +43,7 @@
                 <div class="card__description">
                     <h2 class="card__text"></h2>
                     <button class="card__like-button" type="button"></button>
+                    <span class="card__like-number">1</span>
                 </div>
             </div>
         </template>
@@ -90,6 +91,17 @@
                 </form>
             </div>
         </section>
+
+        <section class="popup popup_type_delete-card">
+            <div class="popup__container">
+                <button class="popup__close-button" type="button"></button>
+                <h3 class="popup__title">Вы уверены?</h3>
+                <form class="popup__inputs" id="popup__place-form" novalidate>
+                    <button class="popup__save-button " type="submit">Да</button>
+                </form>
+            </div>
+        </section>
+        <!-- popup__save-button_inactive -->
 
 
         <section class="popup image-popup">

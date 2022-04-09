@@ -4,6 +4,7 @@ import { PopupWithForm } from '../components/PopupWithForm.js'
 import { FormValidator } from '../components/FormValidator.js'
 import { PopupWithImage } from '../components/PopupWithImage.js'
 import { UserInfo } from '../components/UserInfo.js'
+import { api } from '../components/Api.js'
 import '../pages/index.css'
 
 import {
@@ -22,19 +23,40 @@ import {
   inputProfileName,
   inputProfileProfession,
   profileNameSelector,
-  profileJobSelector
+  profileJobSelector,
+  popupDeleteCardSelector
 } from '../utils/constants.js';
+
+api.getProfile().then(res => {
+  usersInfo.setUserInfo({name: res.name, profession: res.about})
+});
 
 const profileValidation = new FormValidator(validationSettings, profilePopup);
 const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
 const usersInfo = new UserInfo({ nameSelector: profileNameSelector, professionSelector: profileJobSelector });
-const cards = new Section({ items: initialCards.reverse(), renderer: renderItems }, cardsContainerSelector);
+// const cards = new Section({ items: initialCards.reverse(), renderer: renderItems }, cardsContainerSelector);
+const cards = new Section({ items: [], renderer: renderItems }, cardsContainerSelector);
+
+api.getInitialCards().then(serverCards => {
+  serverCards.forEach(element => {
+      const card = {};
+      card.link = element.link;
+      card.name = element.name;
+      card.likes = element.likes;
+      card.cardId = element._id;
+      
+      cards.addItem(card);
+  }); 
+})
 
 profileValidation.enableValidation();
 newCardFormValidation.enableValidation();
 
 const popupNewCard = new PopupWithForm(newCardPopupSelector, handleNewCard);
 popupNewCard.setEventListeners();
+
+const popupDeleteConfirm = new PopupWithForm(popupDeleteCardSelector);
+popupDeleteConfirm.setEventListeners();
 
 const popupUserProfile = new PopupWithForm(profilePopupSelector, handleProfileFormSubmit);
 popupUserProfile.setEventListeners();
@@ -51,18 +73,43 @@ function render() {
 }
 
 function handleNewCard(evt, data) {
-  cards.addItem(data);
+  const { name, link, likes, cardId } = data;
+
+  api.addCard(name, link, likes, cardId).then(res => {
+      console.log('likes', res)
+      cards.addItem(res);
+  })
 }
 
+// как мы отрисовываем карточку
 function renderItems(data) {
-  const item = new Card(data, '.card__template', handleCardClick);
+  const item = new Card(data, '.card__template', handleCardClick, handleDeleteCardButton);
   return item.createCard();
 }
 
-function handleProfileFormSubmit(evt, data) {
-  evt.preventDefault();
-  usersInfo.setUserInfo({ name: data.name, profession: data.profession });
+// обработчик на кнопку с заменой сабмита
+function handleDeleteCardButton(removeCard, cardId){
+   popupDeleteConfirm.open();
+   popupDeleteConfirm.changeSubmitHandler(() => { deleteCard(removeCard, cardId) }); 
 }
+
+// 
+function deleteCard(removeCard, cardId) {
+  api.deleteCard(cardId).then(res => {
+    removeCard();
+    popupDeleteConfirm.close();
+  });
+}
+
+function handleProfileFormSubmit(evt, data) {
+  const { name, profession } = data
+  evt.preventDefault();
+  api.editProfile(name, profession).then(() => {
+      usersInfo.setUserInfo({ name: data.name, profession: data.profession });
+  })
+}
+
+
 
 // Add listeners
 profileEditPopupButton.addEventListener('click', () => {

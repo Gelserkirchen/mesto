@@ -1,8 +1,9 @@
 export class Card {
-    constructor(data, templateSelector, handleImageClick) {
+    constructor(data, templateSelector, handleImageClick, handleDeleteCard) {
         this._data = data;
         this._templateSelector = templateSelector;
         this._handleImageClick = handleImageClick;
+        this._handleDeleteCard = handleDeleteCard; // нужно переименовать то что я добавил
     }
 
     _handleLikeButton(evt) {
@@ -10,8 +11,13 @@ export class Card {
         evt.target.classList.toggle('card__like-button');
     }
 
-    _handleCardDelete(evt) {
+    _deleteCard(evt) { 
         evt.target.closest('.card').remove();
+    }
+
+    _setLikes(numberOfLikes) {
+        const numberOfLikesElement = this._cardElement.querySelector('.card__like-number');
+        numberOfLikesElement.textContent = numberOfLikes; 
     }
 
     createCard() {
@@ -21,10 +27,14 @@ export class Card {
 
         this._cardImage.src = this._data.link;
         this._cardImage.alt = this._data.name;
+        this._cardId = this._data.cardId;
 
         this._cardElement.querySelector('.card__text').textContent = this._data.name;
         this._likeButton = this._cardElement.querySelector('.card__like-button');
         this._deleteButton = this._cardElement.querySelector('.card__delete-button');
+
+        this._setLikes(Array.from(this._data.likes).length);
+
 
         this._setEventListeners();
 
@@ -34,7 +44,9 @@ export class Card {
     _setEventListeners() {
         // Add EvtListener to card
         this._likeButton.addEventListener('click', this._handleLikeButton);
-        this._deleteButton.addEventListener('click', this._handleCardDelete);
+        this._deleteButton.addEventListener('click', (evt) => { 
+            this._handleDeleteCard(() => {this._deleteCard(evt)}, this._cardId); 
+        } );
         this._cardImage.addEventListener('click', this._handleImageClick);
     }
 }

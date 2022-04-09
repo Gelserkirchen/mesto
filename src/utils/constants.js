@@ -17,6 +17,7 @@ export const inputProfileName = profilePopup.querySelector('.popup__input_type_n
 export const inputProfileProfession = profilePopup.querySelector('.popup__input_type_profile');
 export const inputPlaceName = newCardPopup.querySelector('.popup__input_type_place');
 export const inputPlaceLink = newCardPopup.querySelector('.popup__input_type_link');
+export const popupDeleteCardSelector = '.popup_type_delete-card';
 
 export const validationSettings = {
   formSelector: '.popup__inputs',
