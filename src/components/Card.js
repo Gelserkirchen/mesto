@@ -1,21 +1,28 @@
 export class Card {
-    constructor(data, templateSelector, handleImageClick, handleDeleteCard) {
+    constructor(data, templateSelector, handleImageClick, handleDeleteCard, handleLikeClick) {
         this._data = data;
         this._templateSelector = templateSelector;
         this._handleImageClick = handleImageClick;
         this._handleDeleteCard = handleDeleteCard; // нужно переименовать то что я добавил
+        this._handleLikeClick = handleLikeClick;
     }
 
-    _handleLikeButton(evt) {
-        evt.target.classList.toggle('card__like-button_active');
-        evt.target.classList.toggle('card__like-button');
+    _showLikeStatus() {
+        if (this._isLike) {
+            this._likeButton.classList.add('card__like-button_active');
+            this._likeButton.classList.remove('card__like-button');    
+        } else {
+            this._likeButton.classList.remove('card__like-button_active');
+            this._likeButton.classList.add('card__like-button');  
+        }
+        
     }
 
     _deleteCard(evt) { 
         evt.target.closest('.card').remove();
     }
 
-    _setLikes(numberOfLikes) {
+    setLikes(numberOfLikes) {
         const numberOfLikesElement = this._cardElement.querySelector('.card__like-number');
         numberOfLikesElement.textContent = numberOfLikes; 
     }
@@ -33,9 +40,16 @@ export class Card {
         this._likeButton = this._cardElement.querySelector('.card__like-button');
         this._deleteButton = this._cardElement.querySelector('.card__delete-button');
 
-        this._setLikes(Array.from(this._data.likes).length);
+        this.setLikes(Array.from(this._data.likes).length);
+        
+        if (this._data.ownerId !== this._data.userId) {
+            this._deleteButton.style.display = 'none'
+        }
+        
+        debugger
+        this._isLike = this._data.likes.some(user => this._data.userId === user._id);
 
-
+        this._showLikeStatus();
         this._setEventListeners();
 
         return this._cardElement
@@ -43,10 +57,16 @@ export class Card {
 
     _setEventListeners() {
         // Add EvtListener to card
-        this._likeButton.addEventListener('click', this._handleLikeButton);
+        this._likeButton.addEventListener('click', () => {
+            this._handleLikeClick(this._data.cardId, this._isLike, this._cardElement);
+            this._isLike = !this._isLike;
+            this._showLikeStatus();
+        });
+
         this._deleteButton.addEventListener('click', (evt) => { 
             this._handleDeleteCard(() => {this._deleteCard(evt)}, this._cardId); 
         } );
+        
         this._cardImage.addEventListener('click', this._handleImageClick);
     }
 }

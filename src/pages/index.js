@@ -27,9 +27,9 @@ import {
   popupDeleteCardSelector
 } from '../utils/constants.js';
 
-api.getProfile().then(res => {
-  usersInfo.setUserInfo({name: res.name, profession: res.about})
-});
+let userId = '';
+
+
 
 const profileValidation = new FormValidator(validationSettings, profilePopup);
 const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
@@ -37,16 +37,23 @@ const usersInfo = new UserInfo({ nameSelector: profileNameSelector, professionSe
 // const cards = new Section({ items: initialCards.reverse(), renderer: renderItems }, cardsContainerSelector);
 const cards = new Section({ items: [], renderer: renderItems }, cardsContainerSelector);
 
+api.getProfile().then(res => {
+  usersInfo.setUserInfo({ name: res.name, profession: res.about });
+  userId = res._id;
+});
+
 api.getInitialCards().then(serverCards => {
   serverCards.forEach(element => {
-      const card = {};
-      card.link = element.link;
-      card.name = element.name;
-      card.likes = element.likes;
-      card.cardId = element._id;
-      
-      cards.addItem(card);
-  }); 
+    const card = {};
+    card.link = element.link;
+    card.name = element.name;
+    card.likes = element.likes;
+    card.cardId = element._id;
+    card.userId = userId;
+    card.ownerId = element.owner._id;
+
+    cards.addItem(card);
+  });
 })
 
 profileValidation.enableValidation();
@@ -73,24 +80,40 @@ function render() {
 }
 
 function handleNewCard(evt, data) {
-  const { name, link, likes, cardId } = data;
+  const { name, link, likes, cardId, userId, ownerId } = data;
 
-  api.addCard(name, link, likes, cardId).then(res => {
-      console.log('likes', res)
-      cards.addItem(res);
+  api.addCard( name, link, likes, cardId, userId, ownerId ).then(res => {
+    console.log('likes', res)
+    cards.addItem(res);
   })
 }
 
 // как мы отрисовываем карточку
 function renderItems(data) {
-  const item = new Card(data, '.card__template', handleCardClick, handleDeleteCardButton);
+  const item = new Card(data, '.card__template', handleCardClick, handleDeleteCardButton, handleLikeClick);
   return item.createCard();
 }
 
 // обработчик на кнопку с заменой сабмита
-function handleDeleteCardButton(removeCard, cardId){
-   popupDeleteConfirm.open();
-   popupDeleteConfirm.changeSubmitHandler(() => { deleteCard(removeCard, cardId) }); 
+function handleDeleteCardButton(removeCard, cardId) {
+  popupDeleteConfirm.open();
+  popupDeleteConfirm.changeSubmitHandler(() => { deleteCard(removeCard, cardId) });
+}
+
+function handleLikeClick(cardId, isLike, cardElement) {
+    if (!isLike) {
+      api.addLike(cardId).then(res => {
+        console.log(res)
+        console.log('добавляем лайк');
+        debugger
+        // cardElement.setLikes();
+      })      
+    } else {
+      api.deleteLike(cardId).then(res => {
+        console.log(res)
+        console.log('удаляем лайк');
+      }) 
+    }
 }
 
 // 
@@ -105,11 +128,9 @@ function handleProfileFormSubmit(evt, data) {
   const { name, profession } = data
   evt.preventDefault();
   api.editProfile(name, profession).then(() => {
-      usersInfo.setUserInfo({ name: data.name, profession: data.profession });
+    usersInfo.setUserInfo({ name: data.name, profession: data.profession });
   })
 }
-
-
 
 // Add listeners
 profileEditPopupButton.addEventListener('click', () => {

@@ -54,6 +54,25 @@ class Api {
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
             .catch(res => console.log('error Profile edit', res));
     }
+
+    deleteLike(cardId) {  
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+            method: "DELETE",
+            headers: this._headers
+        })
+            .then(res => res.ok ? res.json() : Promise.reject(res.status))
+            .catch(res => console.log('error Profile edit', res));
+    }
+
+    addLike(cardId) {  
+        // debugger
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+            method: "PUT",
+            headers: this._headers
+        })
+            .then(res => res.ok ? res.json() : Promise.reject(res.status))
+            .catch(res => console.log('error Profile edit', res));
+    }
 }
 
 export const api = new Api({
