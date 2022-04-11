@@ -24,21 +24,24 @@ import {
   inputProfileProfession,
   profileNameSelector,
   profileJobSelector,
-  popupDeleteCardSelector
+  popupDeleteCardSelector,
+  avatar,
+  avatarSelector, 
+  updAvatarSelector,
+  updAvatarPopup,
+  updAvatarPopupInput
 } from '../utils/constants.js';
 
 let userId = '';
 
-
-
 const profileValidation = new FormValidator(validationSettings, profilePopup);
 const newCardFormValidation = new FormValidator(validationSettings, newCardPopup);
-const usersInfo = new UserInfo({ nameSelector: profileNameSelector, professionSelector: profileJobSelector });
-// const cards = new Section({ items: initialCards.reverse(), renderer: renderItems }, cardsContainerSelector);
+const avatarFormValidation = new FormValidator(validationSettings, updAvatarPopup);
+const usersInfo = new UserInfo({ nameSelector: profileNameSelector, professionSelector: profileJobSelector, avatarSelector: avatarSelector });
 const cards = new Section({ items: [], renderer: renderItems }, cardsContainerSelector);
 
 api.getProfile().then(res => {
-  usersInfo.setUserInfo({ name: res.name, profession: res.about });
+  usersInfo.setUserInfo({ name: res.name, profession: res.about, avatarSrc: res.avatar });
   userId = res._id;
 });
 
@@ -58,6 +61,10 @@ api.getInitialCards().then(serverCards => {
 
 profileValidation.enableValidation();
 newCardFormValidation.enableValidation();
+avatarFormValidation.enableValidation();
+
+const popupUpdAvatar = new PopupWithForm(updAvatarSelector, handleUpdateAvatar);
+popupUpdAvatar.setEventListeners();
 
 const popupNewCard = new PopupWithForm(newCardPopupSelector, handleNewCard);
 popupNewCard.setEventListeners();
@@ -71,6 +78,15 @@ popupUserProfile.setEventListeners();
 const imagePopup = new PopupWithImage(imagePopupSelector, { imagePopup: image, imagePopupDescription: imagePopupDescription });
 imagePopup.setEventListeners();
 
+
+function handleUpdateAvatar() {
+  const avatarLink = updAvatarPopupInput.value;
+  api.updAvatar(avatarLink).then(res => {
+    const {name, about, avatar } = res;
+    usersInfo.setUserInfo( { name, about, avatarSrc: avatar } );
+  })
+}
+
 function handleCardClick(evt) {
   imagePopup.open(evt.target);
 }
@@ -83,7 +99,6 @@ function handleNewCard(evt, data) {
   const { name, link, likes, cardId, userId, ownerId } = data;
 
   api.addCard( name, link, likes, cardId, userId, ownerId ).then(res => {
-    console.log('likes', res)
     cards.addItem(res);
   })
 }
@@ -100,18 +115,14 @@ function handleDeleteCardButton(removeCard, cardId) {
   popupDeleteConfirm.changeSubmitHandler(() => { deleteCard(removeCard, cardId) });
 }
 
-function handleLikeClick(cardId, isLike, cardElement) {
+function handleLikeClick(cardId, isLike, likeElement) {
     if (!isLike) {
       api.addLike(cardId).then(res => {
-        console.log(res)
-        console.log('добавляем лайк');
-        debugger
-        // cardElement.setLikes();
+        likeElement.textContent = res.likes.length
       })      
     } else {
       api.deleteLike(cardId).then(res => {
-        console.log(res)
-        console.log('удаляем лайк');
+        likeElement.textContent = res.likes.length
       }) 
     }
 }
@@ -134,7 +145,7 @@ function handleProfileFormSubmit(evt, data) {
 
 // Add listeners
 profileEditPopupButton.addEventListener('click', () => {
-  const { name, profession } = usersInfo.getUserInfo()
+  const { name, profession } = usersInfo.getUserInfo();
   inputProfileName.value = name;
   inputProfileProfession.value = profession;
   popupUserProfile.open();
@@ -145,5 +156,11 @@ addNewCardButton.addEventListener('click', () => {
   newCardFormValidation.removeErrors(); //
   popupNewCard.open();
 });
+
+avatar.addEventListener('click', () => {
+  const { avatar } = usersInfo.getUserInfo();
+  updAvatarPopupInput.value = avatar.replace('url("','').replace('")',''); // from stackoverfrlow
+  popupUpdAvatar.open();
+})
 
 render();

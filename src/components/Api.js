@@ -43,7 +43,7 @@ class Api {
             })
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch(res => console.log('error Profile edit', res));
+            .catch(res => console.log('error to add card', res));
     }
 
     deleteCard(cardId) {  
@@ -52,7 +52,7 @@ class Api {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch(res => console.log('error Profile edit', res));
+            .catch(res => console.log('error delete card', res));
     }
 
     deleteLike(cardId) {  
@@ -61,24 +61,36 @@ class Api {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch(res => console.log('error Profile edit', res));
+            .catch(res => console.log('error to delete like', res));
     }
 
     addLike(cardId) {  
-        // debugger
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: "PUT",
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch(res => console.log('error Profile edit', res));
+            .catch(res => console.log('error to add like', res));
+    }
+
+    updAvatar(avatar) {  
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar    
+            })
+        })
+            .then(res => res.ok ? res.json() : Promise.reject(res.status))
+            .catch(res => console.log('error avatar edit', res));
     }
 }
 
 export const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-37',
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
     headers: {
-        authorization: '2e5af95a-25b4-4742-9ead-1326c8073602',
+        // authorization: '2e5af95a-25b4-4742-9ead-1326c8073602',
+        authorization: 'a9707e34-62b5-41bf-b58b-1d72c6c41940',
         'Content-Type': 'application/json'
     }
 }); 
