@@ -1,6 +1,6 @@
 .card__like-button_active {
     background: url("../../../../../src/images/__like_active.svg");
-    margin: 0 20px 0 0;
+    margin: 0 0 3px 0;
     padding: 0;
     display: flex;
     justify-content: center;

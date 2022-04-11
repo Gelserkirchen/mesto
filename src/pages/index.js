@@ -11,7 +11,7 @@ import {
   addNewCardButton,
   cardsContainerSelector,
   imagePopupSelector,
-  initialCards,
+  popupSubmitButton,
   newCardPopupSelector,
   profileEditPopupButton,
   profilePopupSelector,
@@ -26,7 +26,7 @@ import {
   profileJobSelector,
   popupDeleteCardSelector,
   avatar,
-  avatarSelector, 
+  avatarSelector,
   updAvatarSelector,
   updAvatarPopup,
   updAvatarPopupInput
@@ -79,55 +79,70 @@ const imagePopup = new PopupWithImage(imagePopupSelector, { imagePopup: image, i
 imagePopup.setEventListeners();
 
 
+// ПРОФАЙЛ
+// -- обработчик аватара
 function handleUpdateAvatar() {
+  setButtonText(evt, 'Сохранение...');
   const avatarLink = updAvatarPopupInput.value;
   api.updAvatar(avatarLink).then(res => {
-    const {name, about, avatar } = res;
-    usersInfo.setUserInfo( { name, about, avatarSrc: avatar } );
+    setButtonText(evt, 'Сохранить');
+    usersInfo.setUserInfo({ name: res.name, profession: res.about, avatarSrc: res.avatar });
   })
 }
 
-function handleCardClick(evt) {
-  imagePopup.open(evt.target);
+// -- обработчик профайл - попапа
+function handleProfileFormSubmit(evt, data) {
+  setButtonText(evt, 'Сохранение...');
+  const { name, profession } = data
+  evt.preventDefault();
+  api.editProfile(name, profession).then((res) => {
+    setButtonText(evt, 'Сохранить');
+    usersInfo.setUserInfo({ name: res.name, profession: res.about, avatarSrc: res.avatar });
+  })
 }
 
-function render() {
-  cards.renderItems();
-}
-
+// ОТРИСОВЫВАЕМ КАРТОЧКИ
+// создать новую карточку
 function handleNewCard(evt, data) {
+  setButtonText(evt, 'Сохранение...');
   const { name, link, likes, cardId, userId, ownerId } = data;
-
-  api.addCard( name, link, likes, cardId, userId, ownerId ).then(res => {
+  api.addCard(name, link, likes, cardId, userId, ownerId).then(res => {
+    setButtonText(evt, 'Сохранить');
     cards.addItem(res);
   })
 }
 
-// как мы отрисовываем карточку
+// функция отрисовки карточки
 function renderItems(data) {
   const item = new Card(data, '.card__template', handleCardClick, handleDeleteCardButton, handleLikeClick);
   return item.createCard();
 }
 
-// обработчик на кнопку с заменой сабмита
+// -- обработчик на кнопку с заменой сабмита
 function handleDeleteCardButton(removeCard, cardId) {
   popupDeleteConfirm.open();
   popupDeleteConfirm.changeSubmitHandler(() => { deleteCard(removeCard, cardId) });
 }
 
-function handleLikeClick(cardId, isLike, likeElement) {
-    if (!isLike) {
-      api.addLike(cardId).then(res => {
-        likeElement.textContent = res.likes.length
-      })      
-    } else {
-      api.deleteLike(cardId).then(res => {
-        likeElement.textContent = res.likes.length
-      }) 
-    }
+// -- открыть попап с фото
+function handleCardClick(evt) {
+  imagePopup.open(evt.target);
 }
 
-// 
+// -- обработчик лайка
+function handleLikeClick(cardId, isLike, likeElement) {
+  if (!isLike) {
+    api.addLike(cardId).then(res => {
+      likeElement.textContent = res.likes.length
+    })
+  } else {
+    api.deleteLike(cardId).then(res => {
+      likeElement.textContent = res.likes.length
+    })
+  }
+}
+
+// -- удаление карточки
 function deleteCard(removeCard, cardId) {
   api.deleteCard(cardId).then(res => {
     removeCard();
@@ -135,15 +150,11 @@ function deleteCard(removeCard, cardId) {
   });
 }
 
-function handleProfileFormSubmit(evt, data) {
-  const { name, profession } = data
-  evt.preventDefault();
-  api.editProfile(name, profession).then(() => {
-    usersInfo.setUserInfo({ name: data.name, profession: data.profession });
-  })
+function setButtonText(evt, statusText) {
+  evt.target.querySelector(popupSubmitButton).textContent = `${statusText}`;
 }
 
-// Add listeners
+// ADD LISTENERS
 profileEditPopupButton.addEventListener('click', () => {
   const { name, profession } = usersInfo.getUserInfo();
   inputProfileName.value = name;
@@ -153,14 +164,12 @@ profileEditPopupButton.addEventListener('click', () => {
 
 addNewCardButton.addEventListener('click', () => {
   newCardFormValidation.disableButtonState();
-  newCardFormValidation.removeErrors(); //
+  newCardFormValidation.removeErrors();
   popupNewCard.open();
 });
 
 avatar.addEventListener('click', () => {
   const { avatar } = usersInfo.getUserInfo();
-  updAvatarPopupInput.value = avatar.replace('url("','').replace('")',''); // from stackoverfrlow
+  updAvatarPopupInput.value = avatar.replace('url("', '').replace('")', ''); // stackoverflow
   popupUpdAvatar.open();
 })
-
-render();

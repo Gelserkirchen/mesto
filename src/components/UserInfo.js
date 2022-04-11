@@ -13,7 +13,7 @@ export class UserInfo {
         };
     }
 
-    setUserInfo({ name, profession, avatarSrc }) {
+    setUserInfo({ name, profession, avatarSrc = this._avatar }) {
         this._userName.textContent = name;
         this._userProfession.textContent = profession;
         this._avatar.style.backgroundImage = `url(${avatarSrc})`
