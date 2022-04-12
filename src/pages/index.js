@@ -124,7 +124,7 @@ function handleNewCard(evt, data) {
   const { name, link } = data;
   api.addCard(name, link).then(res => {
     const card = renderItem({ name: res.name, link: res.link, likes: res.likes, cardId: res._id, userId: userId, ownerId: res.owner._id });
-    cards.renderItems([].concat(card));
+    cards.addItem(card);
   })
   .catch((err) => {
     console.log('ошибка открытия карточки', err)
