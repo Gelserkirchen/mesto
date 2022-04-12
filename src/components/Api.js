@@ -8,7 +8,6 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         }).then(res => res.ok ? res.json() : Promise.reject('Ошибка: ', res.status))
-            .catch(console.log)
     }
 
     getInitialCards() {
@@ -30,7 +29,6 @@ class Api {
             })
         })
             .then(res => res.ok ? res.json() : Promise.reject('Ошибка: ', res.status))
-            .catch(res => console.log('error Profile edit', res));
     }
 
     addCard(name, link) {
@@ -43,7 +41,6 @@ class Api {
             })
         })
             .then(res => res.ok ? res.json() : Promise.reject('Ошибка: ', res.status))
-            .catch(res => console.log('error to add card', res));
     }
 
     deleteCard(cardId) {
@@ -52,7 +49,6 @@ class Api {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject('Ошибка: ', res.status))
-            .catch(res => console.log('error delete card', res));
     }
 
     deleteLike(cardId) {
@@ -61,7 +57,6 @@ class Api {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject('Ошибка: ', res.status))
-            .catch(res => console.log('error to delete like', res));
     }
 
     addLike(cardId) {
@@ -70,7 +65,6 @@ class Api {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject('Ошибка: ', res.status))
-            .catch(res => console.log('error to add like', res));
     }
 
     updAvatar(avatar) {
@@ -82,7 +76,6 @@ class Api {
             })
         })
             .then(res => res.ok ? res.json() : Promise.reject('Ошибка: ', res.status))
-            .catch(res => console.log('error avatar edit', res));
     }
 }
 

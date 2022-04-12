@@ -3,7 +3,7 @@ export class Card {
         this._data = data;
         this._templateSelector = templateSelector;
         this._handleImageClick = handleImageClick;
-        this._handleDeleteCard = handleDeleteCard; // нужно переименовать то что я добавил
+        this._handleDeleteCard = handleDeleteCard;
         this._handleLikeClick = handleLikeClick;
     }
 
@@ -19,6 +19,7 @@ export class Card {
 
     _deleteCard(evt) {
         evt.target.closest('.card').remove();
+        this._cardElement = null;
     }
 
     _setLikes(numberOfLikes) {
